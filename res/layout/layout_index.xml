@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical" >
+
+    <include
+        android:layout_width="match_parent"
+        layout="@layout/title_view" />
+
+    <include layout="@layout/net_status_bar" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:fillViewport="true"
+        android:focusable="true"
+        android:focusableInTouchMode="true" >
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:orientation="vertical"
+            android:paddingLeft="@dimen/padding"
+            android:paddingRight="12.0dip"
+            android:paddingTop="10.0dip" >
+
+            <RelativeLayout
+                android:id="@+id/lastLoginTime_v"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:focusable="true" >
+
+                <TextView
+                    android:id="@+id/aliasTv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/padding"
+                    android:drawableLeft="@drawable/sun"
+                    android:text="alias"
+                    android:textColor="@color/button_unselected"
+                    android:textSize="12.0sp" />
+
+                <TextView
+                    android:id="@+id/helloContextTv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/aliasTv"
+                    android:layout_marginLeft="30dp"
+                    android:text="@string/hello"
+                    android:textColor="@color/button_unselected"
+                    android:textSize="12.0sp" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/lastLoginTime_v"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:clickable="true"
+                android:focusable="true" >
+
+                <TextView
+                    android:id="@+id/lastLoginTime_lable"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/padding"
+                    android:drawableLeft="@drawable/time"
+                    android:text="上次登录时间 "
+                    android:textColor="@color/button_unselected" />
+
+                <TextView
+                    android:id="@+id/lastLoginTime_statu"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/padding"
+                    android:layout_toRightOf="@+id/lastLoginTime_lable"
+                    android:text=" 2014-11-18 11:13:49"
+                    android:textColor="@color/button_unselected" />
+            </RelativeLayout>
+
+            <LinearLayout
+                android:id="@+id/backlog_inforsV"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10.0dip"
+                android:gravity="left"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/padding"
+                    android:drawableLeft="@drawable/dp"
+                    android:text="@string/backlog_information"
+                    android:textColor="@color/black" />
+
+                <ListView
+                    android:layout_marginTop="@dimen/padding"
+                    android:layout_marginLeft="16dp"
+                    android:id="@+id/banklog_inforsLv"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:divider="@null"
+                    android:entries="@array/queryType"
+                    android:listSelector="@drawable/list_selector"
+                    android:scrollbars="none"
+                    android:scrollingCache="false" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/nav3"
+    android:gravity="center_horizontal" >
+
+    <Button
+        android:id="@+id/iv_start_weibo"
+        style="@style/BlueBtn"
+        android:layout_width="170dp"
+        android:layout_height="@dimen/login_height"
+        android:layout_gravity="bottom"
+        android:layout_marginBottom="10dp"
+        android:text="开         始" />
+    <!--
+         <Button
+        android:id="@+id/iv_start_weibo"
+        android:layout_width="170dp"
+        android:layout_height="@dimen/login_height"
+        android:layout_gravity="bottom"
+        android:layout_marginBottom="16dp"
+        android:background="@color/blue"
+        android:text="开         始"
+        android:textColor="@color/white"
+        android:textSize="@dimen/login_btn_text_font" />
+    -->
+
+</LinearLayout>

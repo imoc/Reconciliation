@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <include
+        android:layout_width="match_parent"
+        layout="@layout/title_layout_view" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:fillViewport="true"
+        android:focusable="true"
+        android:focusableInTouchMode="true" >
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingLeft="10.0dip"
+            android:paddingRight="10.0dip"
+            android:paddingTop="10.0dip" >
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1.0"
+                android:orientation="vertical"
+                android:paddingLeft="10.0dip"
+                android:paddingRight="10.0dip"
+                android:paddingTop="10.0dip" >
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5.0dip"
+                    android:layout_marginLeft="20.0dip"
+                    android:gravity="left"
+                    android:orientation="horizontal" >
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/common_strip_setting_top"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical"
+                    android:padding="10dp" >
+
+                    <ImageView
+                        android:id="@+id/QRcode_iv"
+                        android:layout_width="120dp"
+                        android:layout_height="120dp"
+                        android:src="@drawable/ic_launcher" />
+
+                    <TextView
+                        android:id="@+id/grade_statu"
+                        style="@style/inf_lable_Font"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="0dp"
+                        android:layout_marginTop="10dp"
+                        android:text="@string/app_name" />
+                </LinearLayout>
+
+                <RelativeLayout
+                    android:id="@+id/upVision_v"
+                    android:layout_width="fill_parent"
+                    android:layout_height="44dip"
+                    android:background="@drawable/common_strip_setting_bg"
+                    android:clickable="true"
+                    android:focusable="true" >
+
+                    <ImageView
+                        android:id="@+id/imageView11"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="10.0dip"
+                        android:contentDescription="@null"
+                        android:duplicateParentState="true"
+                        android:src="@drawable/arrow_right_gray_white" />
+
+                    <TextView
+                        android:id="@+id/upVision_lable_tv"
+                        style="@style/inf_lable_Font"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="更新版本" />
+
+                    <ImageView
+                        android:id="@+id/ic_new"
+                        android:layout_width="30dp"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_toRightOf="@+id/upVision_lable_tv"
+                        android:contentDescription="@null"
+                        android:duplicateParentState="true"
+                        android:src="@drawable/ic_new" />
+
+                    <TextView
+                        android:id="@+id/visionNum_statu_tv"
+                        style="@style/inf_status_Font"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_toLeftOf="@+id/imageView11"
+                        android:text="3.0" />
+                </RelativeLayout>
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/copy_right"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|center_horizontal"
+                android:layout_marginBottom="12dp"
+                android:clickable="false"
+                android:gravity="center"
+                android:paddingBottom="@dimen/edit_size"
+                android:text="@string/all_rights_reserved_upvision"
+                android:textSize="10sp" />
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

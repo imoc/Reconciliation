@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#ffffffff"
+    android:orientation="vertical" >
+
+    <include layout="@layout/title_layout_view" />
+
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" >
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20.0dip"
+            android:orientation="vertical"
+            android:padding="10.0dip" >
+
+            <TextView
+                style="@style/help_title_style"
+                android:text="软件简介："
+                android:textStyle="bold" />
+
+            <TextView
+                style="@style/help_text_style"
+                android:layout_marginTop="10.0dip"
+                android:text="    聊天小公主，是一款会跟你聊天互动的智能软件，不管您说什么，小公主都能对答如流，当然，小公主也有回答不上来的时候，只要您的问题不是太难哦~，更多功能，更多乐趣等待您去发掘！小公主的回答除您自定义的问答外，全部来自互联网，不代表本人观点！" />
+
+            <TextView
+                style="@style/help_title_style"
+                android:layout_marginTop="15.0dip"
+                android:text="使用说明："
+                android:textStyle="bold" />
+
+            <TextView
+                style="@style/help_text_style"
+                android:layout_marginTop="10.0dip"
+                android:text="    1.除您自定义的问答外，小公主回答您的问题需要网络支持哦~，而且小公主的回答速度也根据您的网络而定，若网络处于不稳定状态，则小公主会提示您的网络可能出现问题！" />
+
+            <TextView
+                style="@style/help_text_style"
+                android:layout_marginTop="10.0dip"
+                android:text="    2.与小公主聊天时除可发送表情外，也增加了快速查询功能，如天气，星座运势，歌曲点播，笑话，当前位置，美女帅哥网址等功能，除天气，星座及歌曲外，其它都可一键查询！" />
+
+            <TextView
+                style="@style/help_text_style"
+                android:layout_marginTop="10.0dip"
+                android:text="    3.在使用天气，星座，歌曲等功能时，间隔符如&apos;#&apos;，&apos;@&apos;等都是英文字符，若输入中文字符，小公主可能无法识别，要注意区分哦~，在使用歌曲功能时，加上歌手名会增加搜索准确度，由于歌曲功能需要从网络下载歌曲，因此建议您在WiFi网络下使用该功能，在未下载完成时若点击播放，则只能播放已经下载的部分，您可等待下载完毕后播放音乐！" />
+
+            <TextView
+                style="@style/help_text_style"
+                android:layout_marginTop="10.0dip"
+                android:text="    4.您在设置里面，可以修改您的个人头像，小公主对您的称呼，以及小公主自身称呼，还可自定义问答！若您在使用本软件中遇到什么问题，可与作者联系，感谢您的使用！" />
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

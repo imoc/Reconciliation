@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res/com.compass.reconciliation"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/viewpager"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout1"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:background="@color/transparent_complete"
+        android:orientation="vertical" >
+
+        <com.compass.widget.FlowIndicator
+            android:id="@+id/mFlowIndicator"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dip"
+            android:gravity="center"
+            app:count="4"
+            app:point_normal_color="#0058E6"
+            app:point_radius="3dip"
+            app:point_seleted_color="#ffffff"
+            app:point_size="5dip"
+            app:space="10dip" />
+    </LinearLayout>
+
+</FrameLayout>

@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/tab1"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:background="#ACA899" >
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:baselineAligned="false"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal" >
+
+        <FrameLayout
+            android:id="@+id/chart_v"
+            android:layout_width="fill_parent"
+            android:layout_height="48.0dip"
+            android:layout_marginRight="10.0dip"
+            android:layout_weight="1.0" >
+
+            <ImageView
+                android:id="@+id/chart_iv"
+                style="@style/toolbar_imageView"
+                android:src="@drawable/png_06" />
+
+            <TextView
+                android:id="@+id/chart_tv"
+                style="@style/toolbar_textView"
+                android:text="首页" />
+
+            <ImageView
+                android:id="@+id/chart_notice_iv"
+                style="@style/toolbar_notice_point" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/share_v"
+            android:layout_width="fill_parent"
+            android:layout_height="48.0dip"
+            android:layout_marginRight="10.0dip"
+            android:layout_weight="1.0" >
+
+            <ImageView
+                android:id="@+id/share_iv"
+                style="@style/toolbar_imageView"
+                android:src="@drawable/png_03" />
+
+            <TextView
+                android:id="@+id/share_tv"
+                style="@style/toolbar_textView"
+                android:text="手机银行" />
+
+            <ImageView
+                android:id="@+id/share_notice_tv"
+                style="@style/toolbar_notice_point" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/progress_v"
+            android:layout_width="fill_parent"
+            android:layout_height="48.0dip"
+            android:layout_marginLeft="10.0dip"
+            android:layout_weight="1.0"
+            android:visibility="gone" >
+
+            <ImageView
+                android:id="@+id/progress_iv"
+                style="@style/toolbar_imageView"
+                android:src="@drawable/png_09" />
+
+            <TextView
+                android:id="@+id/progress_tv"
+                style="@style/toolbar_textView"
+                android:text="联系我们" />
+
+            <ImageView
+                android:id="@+id/curriculum_notice_iv"
+                style="@style/toolbar_notice_point" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/curriculum_v"
+            android:layout_width="fill_parent"
+            android:layout_height="48.0dip"
+            android:layout_weight="1.0" >
+
+            <ImageView
+                android:id="@+id/curriculum_iv"
+                style="@style/toolbar_imageView"
+                android:src="@drawable/png_12" />
+
+            <TextView
+                android:id="@+id/curriculum_tv"
+                style="@style/toolbar_textView"
+                android:text="个人中心" />
+
+            <ImageView
+                android:id="@+id/curriculum_notice_iv"
+                style="@style/toolbar_notice_point"
+                tools:ignore="DuplicateIds" />
+        </FrameLayout>
+    </LinearLayout>
+
+</FrameLayout>

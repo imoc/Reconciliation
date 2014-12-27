@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@android:color/white"
+    android:orientation="vertical"
+    android:padding="5dp" >
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="30dp" >
+
+        <TextView
+            android:id="@+id/title_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:text="2014年中考状元榜"
+            android:textColor="@color/blue"
+            android:textSize="@dimen/blue_size" />
+
+        <TextView
+            android:id="@+id/time_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="15dp"
+            android:text="2014-6-8" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/center_bg"
+        android:orientation="horizontal" >
+
+        <ImageView
+            android:id="@+id/short_img_iv"
+            android:layout_width="0dp"
+            android:layout_height="90dp"
+            android:layout_weight="1"
+            android:gravity="right"
+            android:padding="4dp"
+            android:src="@drawable/about_brand" />
+
+        <TextView
+            android:id="@+id/short_content_tv"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="right"
+            android:maxLines="4"
+            android:padding="4dp"
+            android:text="    五年级数学同步班五年级数学同步班五年级数学同步班五年级数学同步班五年级数学同步班五年级数学同步班五年级数学同步班五年级数学同步班五年级数学同步班五年级数学同步班"
+            android:textColor="@color/font_color2"
+            android:textSize="16dp" />
+    </LinearLayout>
+
+</LinearLayout>

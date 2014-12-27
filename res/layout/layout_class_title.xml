@@ -1,0 +1,25 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/class_v"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/grey_bg" >
+
+    <TextView
+        android:id="@+id/class_tv"
+        style="@style/learn_progress_tag"
+        android:layout_centerVertical="true"
+        android:text="五年级数学同步班" />
+    <!--
+         <TextView
+        android:id="@+id/class_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="16dp"
+        android:singleLine="true"
+        android:text="五年级数学同步班"
+        android:textColor="@color/blue"/>
+    -->
+
+</RelativeLayout>

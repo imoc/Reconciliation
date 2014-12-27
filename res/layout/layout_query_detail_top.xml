@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical" >
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:fillViewport="true"
+        android:focusable="true"
+        android:focusableInTouchMode="true" >
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:background="@color/white"
+            android:orientation="vertical"
+            android:paddingLeft="10.0dip"
+            android:paddingRight="10.0dip"
+            android:paddingTop="10.0dip" >
+
+            <TextView
+                android:id="@+id/accountTv"
+                style="@style/B4_Font_white"
+                android:layout_width="fill_parent"
+                android:layout_height="44.0dip"
+                android:background="@drawable/common_strip_setting_top"
+                android:clickable="true"
+                android:gravity="center_vertical"
+                android:paddingLeft="10.0dip"
+                android:paddingRight="10.0dip"
+                android:text="账        号：12345678913456789" />
+
+            <TextView
+                android:id="@+id/agencyTv"
+                style="@style/B4_Font_white"
+                android:layout_width="fill_parent"
+                android:layout_height="44.0dip"
+                android:background="@drawable/common_strip_setting_top"
+                android:clickable="true"
+                android:gravity="center_vertical"
+                android:paddingLeft="10.0dip"
+                android:paddingRight="10.0dip"
+                android:text="机构名称：营业部" />
+
+            <TextView
+                android:id="@+id/subjectTv"
+                style="@style/B4_Font_white"
+                android:layout_width="fill_parent"
+                android:layout_height="44.0dip"
+                android:background="@drawable/common_strip_setting_top"
+                android:clickable="true"
+                android:gravity="center_vertical"
+                android:paddingLeft="10.0dip"
+                android:paddingRight="10.0dip"
+                android:text="科目号   ：2001" />
+            
+            <TextView
+                android:id="@+id/currencyTv"
+                style="@style/B4_Font_white"
+                android:layout_width="fill_parent"
+                android:layout_height="44.0dip"
+                android:background="@drawable/common_strip_setting_top"
+                android:clickable="true"
+                android:gravity="center_vertical"
+                android:paddingLeft="10.0dip"
+                android:paddingRight="10.0dip"
+                android:text="币       种：人民币" />
+
+            <TextView
+                android:id="@+id/subAccountTv"
+                style="@style/B4_Font_white"
+                android:layout_width="fill_parent"
+                android:layout_height="44.0dip"
+                android:background="@drawable/common_strip_setting_top"
+                android:clickable="true"
+                android:gravity="center_vertical"
+                android:paddingLeft="10.0dip"
+                android:paddingRight="10.0dip"
+                android:text="分账号   ：10010" />
+
+            <TextView
+                android:id="@+id/nameTv"
+                style="@style/B4_Font_white"
+                android:layout_width="fill_parent"
+                android:layout_height="44.0dip"
+                android:background="@drawable/common_strip_setting_top"
+                android:clickable="true"
+                android:gravity="center_vertical"
+                android:paddingLeft="10.0dip"
+                android:paddingRight="10.0dip"
+                android:text="户       名：平定县财政局" />
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

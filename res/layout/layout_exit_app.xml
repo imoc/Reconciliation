@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/right_second_view_group"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/translucent_background"
+    android:gravity="center_horizontal"
+    android:orientation="vertical" >
+
+    <include
+        layout="@layout/title_layout_view"
+        android:visibility="invisible" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@color/white"
+        android:orientation="vertical" >
+
+        <TextView
+            style="@style/B4_Font_white"
+            android:layout_width="match_parent"
+            android:layout_height="0dip"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:padding="14.0dip"
+            android:text="@string/exit_confirm_toast"
+            android:textSize="14sp" />
+
+        <Button
+            android:id="@+id/confirm_exit_btn"
+            style="@style/RedGreen"
+            android:layout_width="fill_parent"
+            android:layout_height="46.0dip"
+            android:layout_marginBottom="20.0dip"
+            android:layout_marginLeft="10.0dip"
+            android:layout_marginRight="10.0dip"
+            android:layout_marginTop="15.0dip"
+            android:background="@drawable/common_btn_red"
+            android:text="@string/exit_confirm" />
+
+        <Button
+            android:id="@+id/cancel_exit_btn"
+            style="@style/BlueBtn"
+            android:layout_width="fill_parent"
+            android:layout_height="46.0dip"
+            android:layout_marginBottom="20.0dip"
+            android:layout_marginLeft="10.0dip"
+            android:layout_marginRight="10.0dip"
+            android:layout_marginTop="15.0dip"
+            android:text="@string/cancel" />
+    </LinearLayout>
+
+</RelativeLayout>

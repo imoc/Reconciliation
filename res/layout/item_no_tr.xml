@@ -1,0 +1,205 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/white" >
+
+    <LinearLayout
+        android:id="@+id/center"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+
+        <include
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp40"
+            layout="@layout/layout_date_title"
+            android:background="@color/grey_bg" />
+
+        <LinearLayout
+            android:id="@+id/teach_content_v"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:gravity="center_vertical"
+            android:orientation="vertical" >
+
+            <LinearLayout
+                android:id="@+id/noticeId_V"
+                style="@style/Padding_learning"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="6dp" >
+
+                <TextView
+                    android:id="@+id/noticeId_label_tv"
+                    style="@style/Color2_12_Font"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="16dp"
+                    android:singleLine="true"
+                    android:text="通知编号：" />
+
+                <TextView
+                    android:id="@+id/noticeId_tv"
+                    style="@style/B12_Font"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="平定县娘子关生活垃圾" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/account_v"
+                style="@style/Padding_learning"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content" >
+
+                <TextView
+                    android:id="@+id/account_label_tv"
+                    style="@style/Color2_12_Font"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="16dp"
+                    android:singleLine="true"
+                    android:text="账       号：" />
+
+                <TextView
+                    android:id="@+id/account_tv"
+                    style="@style/B12_Font"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="企业用户" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/company_v"
+                style="@style/Padding_learning"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content" >
+
+                <TextView
+                    android:id="@+id/company_label_tv"
+                    style="@style/Color2_12_Font"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="16dp"
+                    android:singleLine="true"
+                    android:text="户    名 ：" />
+
+                <TextView
+                    android:id="@+id/company_tv"
+                    style="@style/B12_Font"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="17dp"
+                    android:singleLine="true"
+                    android:text="123" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/date_v"
+                style="@style/Padding_learning"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone" >
+
+                <TextView
+                    android:id="@+id/date_label_tv"
+                    style="@style/Color2_12_Font"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="16dp"
+                    android:singleLine="true"
+                    android:text="对账日期：" />
+
+                <TextView
+                    android:id="@+id/date_tv"
+                    style="@style/B12_Font"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="17dp"
+                    android:singleLine="true"
+                    android:text="人民币" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/type_v"
+                style="@style/Padding_learning"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content" >
+
+                <TextView
+                    android:id="@+id/type_label_tv"
+                    style="@style/Color2_12_Font"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="16dp"
+                    android:singleLine="true"
+                    android:text="类型：" />
+
+                <TextView
+                    android:id="@+id/type_tv"
+                    style="@style/B12_Font"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="752.362.59" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/checkContent_v"
+                style="@style/Padding_learning"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content" >
+
+                <TextView
+                    android:id="@+id/checkContent_label_tv"
+                    style="@style/Color2_12_Font"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="16dp"
+                    android:singleLine="true"
+                    android:text="查复内容：" />
+
+                <TextView
+                    android:id="@+id/checkContent_tv"
+                    style="@style/B12_Font"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="17dp"
+                    android:singleLine="true"
+                    android:text="123456789123456789" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/checkState_v"
+                style="@style/Padding_learning"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content" >
+
+                <TextView
+                    android:id="@+id/checkState_label_tv"
+                    style="@style/Color2_12_Font"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="16dp"
+                    android:singleLine="true"
+                    android:text="是否查复 :" />
+
+                <TextView
+                    android:id="@+id/checkState_tv"
+                    style="@style/B12_Font"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="未操作" />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+</RelativeLayout>

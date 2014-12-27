@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#ffffffff"
+    android:orientation="vertical" >
+
+    <include
+        layout="@layout/title_layout_view" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10.0dip"
+        android:text="反馈建议："
+        android:textColor="@color/gray"
+        android:textSize="18.0sp" />
+
+    <EditText
+        android:id="@+id/et_suggest"
+        android:layout_width="fill_parent"
+        android:layout_height="120.0dip"
+        android:layout_marginLeft="10.0dip"
+        android:layout_marginRight="10.0dip"
+        android:background="@drawable/ic_edit_bg"
+        android:gravity="top|left|center"
+        android:hint="您在使用当中遇到什么问题或有什么好的建议，都可以写下来，您的意见是我前进的动力！"
+        android:maxLength="160"
+        android:padding="5.0dip"
+        android:textColor="@color/gray"
+        android:textSize="14.0sp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10.0dip"
+        android:text="联系方式："
+        android:textColor="@color/gray"
+        android:textSize="18.0sp" />
+
+    <EditText
+        android:id="@+id/et_contact"
+        android:layout_width="fill_parent"
+        android:layout_height="40.0dip"
+        android:layout_marginLeft="10.0dip"
+        android:layout_marginRight="10.0dip"
+        android:background="@drawable/ic_edit_bg"
+        android:hint="请输入您的手机号/QQ/邮箱"
+        android:maxLength="20"
+        android:padding="5.0dip"
+        android:singleLine="true"
+        android:textColor="@color/gray"
+        android:textSize="14.0sp" />
+
+    <Button
+        android:id="@+id/submit_btn"
+        style="@style/BlueBtn"
+        android:layout_width="fill_parent"
+        android:layout_height="46.0dip"
+        android:layout_marginBottom="20.0dip"
+        android:layout_marginLeft="10.0dip"
+        android:layout_marginRight="10.0dip"
+        android:layout_marginTop="15.0dip"
+        android:text="@string/submit" />
+
+</LinearLayout>

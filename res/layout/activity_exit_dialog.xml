@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/exit_layout"
+    android:layout_width="280dp"
+    android:layout_height="wrap_content"
+    android:background="#EFEBEF"
+    android:gravity="center_horizontal"
+    android:orientation="vertical" >
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:padding="5dp"
+        android:text="@string/offline_notice_title"
+        android:textColor="#333"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/tip_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="1dp"
+        android:gravity="center_horizontal"
+        android:padding="10dp"
+       	android:text="@string/offline_notice_content"
+        android:textColor="#333"
+        android:textSize="16sp" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginTop="33dp" >
+
+        <Button
+            android:id="@+id/exitBtn0"
+            android:layout_width="110dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:onClick="exitOk"
+            android:text="退出"
+            android:textSize="16sp" />
+
+        <Button
+            android:id="@+id/exitBtn1"
+            android:layout_width="110dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:gravity="center"
+            android:onClick="exitCancel"
+            android:text="重新登录"
+            android:textSize="16sp" />
+    </LinearLayout>
+
+</LinearLayout>

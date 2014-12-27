@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.compass.widget.CircularProgressBarView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:cpbar="http://schemas.android.com/apk/res/com.compass.reconciliation"
+    android:id="@+id/idCircularProBar"
+    android:layout_width="wrap_content"
+    android:layout_height="50dp"
+    cpbar:circleColor1="@color/grassGreen"
+    cpbar:radius1="50dp"
+    cpbar:ringColor1="@color/blue"
+    cpbar:strokeWidth1="4dp" />

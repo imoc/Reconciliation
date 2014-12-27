@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/login_activity_bg" >
+
+    
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/login_activity_bg" >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:background="@color/login_activity_bg"
+            android:gravity="center" >
+
+            <ImageView
+                android:id="@+id/idImageVLoginTop"
+                android:layout_width="280dp"
+                android:layout_height="84dp"
+                android:layout_centerHorizontal="true"
+                android:background="@drawable/login_top" />
+
+            <EditText
+                android:id="@+id/alias_input"
+                style="@style/LoginUserNamePwdTheme"
+                android:layout_below="@+id/idImageVLoginTop"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="70dp"
+                android:background="@color/white"
+                android:drawableLeft="@drawable/login_01"
+                android:drawablePadding="10dp"
+                android:hint="@string/login_alias"
+                android:paddingLeft="10dp"
+                android:singleLine="true"
+                android:text="sxthydzsgcyxgs" />
+
+            <EditText
+                android:id="@+id/account_input"
+                style="@style/LoginUserNamePwdTheme"
+                android:layout_below="@+id/alias_input"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="@dimen/login_margin_top"
+                android:background="@color/white"
+                android:drawableLeft="@drawable/login_01"
+                android:drawablePadding="10dp"
+                android:hint="@string/login_username"
+                android:paddingLeft="10dp"
+                android:singleLine="true"
+                android:text="4011034326" />
+
+            <EditText
+                android:id="@+id/password"
+                style="@style/LoginUserNamePwdTheme"
+                android:layout_below="@+id/account_input"
+                android:layout_centerHorizontal="true"
+                android:layout_marginLeft="6dp"
+                android:layout_marginTop="@dimen/login_margin_top"
+                android:background="@color/white"
+                android:drawableLeft="@drawable/login_02"
+                android:drawablePadding="10dp"
+                android:hint="@string/login_password"
+                android:inputType="textPassword"
+                android:paddingLeft="10dp"
+                android:singleLine="true"
+                android:text="123" />
+
+            <Button
+                android:id="@+id/login_btn"
+                android:layout_width="@dimen/login_width"
+                android:layout_height="@dimen/login_height"
+                android:layout_below="@+id/password"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="@dimen/login_margin_top"
+                android:background="@drawable/common_strip_setting_top"
+                android:gravity="center"
+                android:text="@string/login_btn_text"
+                android:textSize="@dimen/login_btn_text_font" />
+
+            <RelativeLayout
+                android:id="@+id/otherWayLayout"
+                android:layout_width="@dimen/login_width"
+                android:layout_height="@dimen/login_height"
+                android:layout_below="@+id/login_btn"
+                android:layout_centerHorizontal="true"
+                android:gravity="center_vertical" >
+
+                <TextView
+                    android:id="@+id/regist_tv"
+                    style="@style/LoginRegisterTheme"
+                    android:layout_alignParentLeft="true"
+                    android:layout_marginLeft="8dp"
+                    android:clickable="true"
+                    android:padding="6dp"
+                    android:text="注册开通"
+                    android:visibility="invisible" />
+
+                <TextView
+                    android:id="@+id/forget_tv"
+                    style="@style/LoginRegisterTheme"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="8dp"
+                    android:clickable="true"
+                    android:padding="6dp"
+                    android:text="忘记密码" />
+            </RelativeLayout>
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/copy_right"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="12dp"
+            android:clickable="false"
+            android:paddingBottom="@dimen/edit_size"
+            android:text="@string/all_rights_reserved"
+            android:textColor="@color/white"
+            android:textSize="@dimen/edit_size" />
+    </RelativeLayout>
+
+    <include layout="@layout/net_status_bar" />
+
+</FrameLayout>

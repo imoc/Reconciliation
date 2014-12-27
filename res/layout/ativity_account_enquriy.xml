@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/main_linear_listview"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background"
+    android:orientation="vertical" >
+
+    <include
+        android:id="@+id/main_title"
+        layout="@layout/title_view" />
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/background" >
+
+        <LinearLayout
+            android:id="@+id/queryType_v"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:background="@color/transparent_complete"
+            android:orientation="vertical"
+            android:paddingLeft="10.0dip"
+            android:paddingRight="10.0dip"
+            android:paddingTop="10.0dip"
+            android:visibility="visible" >
+
+            <TextView
+                style="@style/inf_lable_Font"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="选择您要查询的类型" />
+
+            <ListView
+                android:id="@+id/queryType_lv"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_marginTop="20dp"
+                android:background="@color/transparent_complete"
+                android:divider="@null"
+                android:entries="@array/queryType"
+                android:listSelector="@drawable/list_selector"
+                android:scrollbars="none"
+                android:scrollingCache="false" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/queryCondition_v"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:background="@color/white"
+            android:orientation="vertical"
+            android:paddingLeft="10.0dip"
+            android:paddingRight="10.0dip"
+            android:paddingTop="10.0dip"
+            android:visibility="invisible" >
+
+            <TextView
+                style="@style/inf_lable_Font"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="当前查询类型" />
+
+            <TextView
+                android:id="@+id/queryType_tv"
+                style="@style/inf_lable_Font"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:text="明细查询" />
+
+            <TextView
+                style="@style/inf_lable_Font"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="选择您要查询的账号" />
+
+            <Spinner
+                android:id="@+id/accountSpinner"
+                android:layout_width="fill_parent"
+                android:layout_height="@dimen/login_height"
+                android:layout_marginLeft="@dimen/gv_line_horizontal_width" />
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal" >
+
+                <Button
+                    android:id="@+id/fastQuery_bt"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="快速查询" />
+
+                <Button
+                    android:id="@+id/sectionQuery_bt"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="按时间段查询" />
+            </LinearLayout>
+
+            <Spinner
+                android:id="@+id/fastSectionSpinner"
+                android:layout_width="fill_parent"
+                android:layout_height="@dimen/login_height"
+                android:layout_marginLeft="@dimen/gv_line_horizontal_width" />
+
+            <LinearLayout
+                android:id="@+id/sectionQueryView"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone" >
+
+                <RelativeLayout
+                    android:id="@+id/startDate_v"
+                    android:layout_width="fill_parent"
+                    android:layout_height="44dip"
+                    android:background="@drawable/common_strip_setting_top"
+                    android:clickable="true"
+                    android:focusable="true" >
+
+                    <ImageView
+                        android:id="@+id/imageView11"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="10.0dip"
+                        android:contentDescription="@null"
+                        android:duplicateParentState="true"
+                        android:src="@drawable/arrow_right_gray_white" />
+
+                    <TextView
+                        style="@style/inf_lable_Font"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="开始日期" />
+
+                    <TextView
+                        android:id="@+id/startDate_statu"
+                        style="@style/inf_status_Font"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_toLeftOf="@+id/imageView11"
+                        android:text="2014-10-13" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/endDate_v"
+                    android:layout_width="fill_parent"
+                    android:layout_height="44dip"
+                    android:background="@drawable/common_strip_setting_top"
+                    android:clickable="true"
+                    android:focusable="true" >
+
+                    <ImageView
+                        android:id="@+id/imageView13"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="10.0dip"
+                        android:contentDescription="@null"
+                        android:duplicateParentState="true"
+                        android:src="@drawable/arrow_right_gray_white" />
+
+                    <TextView
+                        style="@style/inf_lable_Font"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="结束日期" />
+
+                    <TextView
+                        android:id="@+id/endDate_statu"
+                        style="@style/inf_status_Font"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_toLeftOf="@+id/imageView13"
+                        android:text="2014-11-13" />
+                </RelativeLayout>
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/query_bt"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:onClick="flase"
+                android:text="查询" />
+
+            <TextView
+                style="@style/inf_lable_Font"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/tip_query" />
+        </LinearLayout>
+    </FrameLayout>
+
+</LinearLayout>

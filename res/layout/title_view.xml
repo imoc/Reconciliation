@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="@dimen/title_gb_height"
+    android:background="@color/title_bg_color" 
+    android:id="@+id/titleBar_v">
+
+    <TextView
+        android:id="@+id/title_text"
+        style="@style/activity_title_text"
+        android:text="标题" />
+
+    <ImageView
+        android:id="@+id/left_title_iv"
+        android:layout_width="50dp"
+        android:layout_height="fill_parent"
+        android:padding="13dp"
+        style="@style/title_right_button"
+        android:layout_gravity="center_vertical"
+        android:src="@drawable/left_arrow" />
+
+    <ImageView
+        android:id="@+id/right_title_iv"
+        android:layout_width="40dp"
+        android:layout_height="fill_parent"
+        android:layout_marginRight="10dp"
+        style="@style/title_right_button"
+        android:layout_gravity="center_vertical|right"
+        android:src="@drawable/collect_star_normal"
+        android:visibility="invisible"/>
+
+</FrameLayout>
+

@@ -1,0 +1,41 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/grey_bg"
+    android:id="@+id/layout_date_title" >
+
+    <ImageView
+        android:id="@+id/date_icon_iv"
+        style="@style/share_manager_icon_Imgv"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="18dp"
+        android:src="@drawable/ico_time" />
+
+    <TextView
+        android:id="@+id/date_tv"
+         style="@style/B12_Font_base"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="5dp"
+        android:layout_toRightOf="@+id/date_icon_iv"
+        android:singleLine="true"
+        android:text="2014年6月5日"
+        android:textColor="@color/black"
+       />
+
+    <TextView
+        android:id="@+id/week_tv"
+        style="@style/B12_Font_base"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="6dp"
+        android:layout_toRightOf="@+id/date_tv"
+        android:singleLine="true"
+        android:text="星期六" 
+        android:visibility="gone"/>
+
+</RelativeLayout>
