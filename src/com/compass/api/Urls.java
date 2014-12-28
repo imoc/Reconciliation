@@ -1,31 +1,19 @@
 package com.compass.api;
 
+
 /**
- * 
- * @classDescription 接口
- * @date 2014年8月6日 下午6:13:40
- * @author 李小伟
+ * @author daodao（dao。dev@qq.com）
+ *
  */
 public class Urls {
 
-	// public static final String BASIC_TEST_URL =
-	// "http://192.168.0.88:8080/BaiduPushService/school";// 版本升级测试用
-
-	//本地环境
-//	 public static final String BASIC_URL =	 "http://192.168.0.99:8080/school";//郭红涛
+	//测试环境
+	public static final String HOST = "http://192.168.0.172:8080";
+	//实际环境
+//	public static final String HOST = "http://jhauto.gicp.net";
 	
-	//测试环境用，2014年8月16日19:49:31
-	public static final String BASIC_URL = "http://jhauto.gicp.net/accountclient/app";
-	public static final String BASIC_URL_Login = "http://jhauto.gicp.net/accountclient/api";
-
-	//正式用
-	
-	// 类型
-	public static final String TYPE_HONOR = "1";
-	public static final String TYPE_NEWS = "2";
-	public static final String PRAISE_TYPE_TEACHER = "1";
-	public static final String PRAISE_TYPE_SHARE = "2";
-
+	public static final String BASIC = HOST+"/accountclient/app";
+	public static final String BASIC_URL_Login = HOST+"/accountclient/api";
 
 	/**
 	 * 登录
@@ -34,16 +22,17 @@ public class Urls {
 	 * 
 	 *  http://jhauto.gicp.net/accountclient/api/login.action?c=00140011055&USERNA=pdxczj&PASSWD=123&TOKEN=123
 	 */
-	public static final String USER_LOGIN =BASIC_URL_Login 
+	public static final String USER_LOGIN =BASIC 
 			+"/login.action?"
 			+ "&TOKEN=123"
 			+ "&USERNA=%s"
 			+ "&OPENID=%s"
-			+ "&PASSWD=%s" ;
+			+ "&PASSWD=%s"
+			;
 	/**
 	 * 获取待办信息
 	 */
-	public static final String GET_BACKLOG_INFORS_URL = BASIC_URL 
+	public static final String GET_BACKLOG_INFORS_URL = BASIC 
 			+ "/task.action?"
 			+ "SIGNATURE=%s"
 			;
@@ -58,7 +47,7 @@ http://jhauto.gicp.net/accountclient/app/requestAccLi.action?signature=123&type=
 --------
 {"data":[{"ACCOUNT":"401103010300000054328"}],"errcode":0}
 	 */
-	public static final String GET_ACCOUNTS_URL = BASIC_URL 
+	public static final String GET_ACCOUNTS_URL = BASIC 
 			+ "/app/requestAccLi.action?"
 			+ "SIGNATURE=%s"
 			+ "&TYPE=%s"
@@ -68,18 +57,19 @@ http://jhauto.gicp.net/accountclient/app/requestAccLi.action?signature=123&type=
 	 * 六，对一个账号对账操作
 请求方式：post
 webService/app/accUpdate.action?signature=123&account=401103010300000054328&accs=null&dates=2014-10-31&clientcheck=1&type=0
-http://jhauto.gicp.net/accountclient/app/accUpdate.action?signature=123&account=401103010300000054328&accs=null&dates=2014-10-31&clientcheck=1&type=hqsize
+http://jhauto.gicp.net/accountclient/app/accUpdate.action?signature=123&account=401103010300000054328&accs=null&dates=2014-10-31&clientcheck=1&CHECKE=1&type=hqsize
 ----------------------
 {"errcode":0}
 	 * 
 	 */
-	public static final String OPERATE_URL = BASIC_URL 
+	public static final String OPERATE_URL = BASIC 
 			+ "/accUpdate.action?"
 			+ "SIGNATURE=%s"
 			+ "&ACCOUNT=%s"
 			+ "&ACCS=null"
 			+ "&DATES=%s"
 			+ "&CLIENTCHECK=%s"
+			+ "&CHECKE=%s"
 			+ "&TYPE=0"
 			 ;
 	/**
@@ -112,7 +102,7 @@ http://jhauto.gicp.net/accountclient/app/requestTask.action?Signature=123&type=h
 21T00:00:00","BALANCE":1597897.63,"EXITEMNO":"2001","CLIENTCHECK":"0","TYPE":"1","CHECKE":null,"ATTR":null,"ACCS":null}],"errcode":0
 	 * 
 	 */
-	public static final String REQUEST_TASK_URL = BASIC_URL 
+	public static final String REQUEST_TASK_URL = BASIC 
 			+ "/requestTask.action?"
 			+ "SIGNATURE=%s"
 			+ "&TYPE=%s"
@@ -126,14 +116,18 @@ http://jhauto.gicp.net/accountclient/app/accDetail.action?signature=123&account=
 {"data":[{"PASSED":"0","ACCOUNT":"401103010300000054328","CLINAME":"山西太行永达装饰工程有限公司","DATES":"2014-09-30","LASTTIME":"2014-09-
 
 29T00:00:00","BALANCE":141026.45,"EXITEMNO":"2001","CLIENTCHECK":"1","TYPE":"1","CHECKE":null,"ATTR":null,"ACCS":null}],"errcode":0}
+
+
+ISCHECKED //1.已对账 0，未对账 
 	 */
-	public static final String ACC_DETAIL_URL = BASIC_URL 
+	public static final String ACC_DETAIL_URL = BASIC 
 			+ "/accDetail.action?"
 			+ "SIGNATURE=%s"
 			+ "&ACCOUNT=%s"
 			+ "&ACCS="
 			+ "&SDATE=%s"
 			+ "&EDATE=%s"
+			+ "&ISCHECKED=%s"
 			+ "&TYPE=1"
 			;
 	/**
@@ -146,7 +140,7 @@ http://jhauto.gicp.net/accountclient/app/remindcheckagin.action?SIGNATURE=123
 {"errmsg":"send failed ","errcode":"1"}
 
 	 */
-	public static final String GET_SMS_AUTH_CODE = BASIC_URL 
+	public static final String GET_SMS_AUTH_CODE = BASIC 
 			+ "/remindcheckagin.action?"
 			+ "SIGNATURE=%s"
 			;
@@ -164,7 +158,7 @@ MSG	是	6位验证码
 {"errmsg":"send failed ","errcode":"1"}
 
 	 */
-	public static final String SUBMIT_AUTH_CODE = BASIC_URL 
+	public static final String SUBMIT_AUTH_CODE = BASIC 
 			+ "/remindcheck.action?"
 			+ "SIGNATURE=%s"
 			+ "&MSG=%s"
@@ -202,7 +196,7 @@ ACCS
 
 	 */
 	
-	public static final String Detailed_Reconciliation = BASIC_URL 
+	public static final String Detailed_Reconciliation = BASIC 
 			+ "/getAccbookAccount.action?"
 			+ "SIGNATURE=%s"
 			+ "&ACCOUNT=%s"
@@ -237,7 +231,7 @@ BALANCE	余额
 ACCOUNTSIGN	默认为0
 
 	 */
-	public static final String ALL_NOT_TRANSIT_LIST = BASIC_URL 
+	public static final String ALL_NOT_TRANSIT_LIST = BASIC 
 			+ "/allnotTransit.action?"
 			+ "SIGNATURE=%s"
 			+ "&ACCOUNT=%s"
@@ -254,7 +248,7 @@ http://localhost:8080/accountclient/app/getAccountAll.action?SIGNATURE=123
 ERRCODE	状态码
 DATA	数组
 	 */
-	public static final String ACCOUNT_ALL = BASIC_URL 
+	public static final String ACCOUNT_ALL = BASIC 
 			+ "/getAccountAll.action?"
 			+ "SIGNATURE=%s"
 			;
@@ -269,7 +263,7 @@ SIGNATURE	是	系统签名
 USERNAME	是	修改的用户名
 USERNAME 需要验证为数字和字母组合
 	 */
-	public static final String UPD_USER_NA_URL = BASIC_URL 
+	public static final String UPD_USER_NA_URL = BASIC 
 			+ "/updUserNa.action?"
 			+ "SIGNATURE=%s"
 			+ "&USERNAME=%s"
@@ -289,7 +283,7 @@ UPASSWORD	是	修改后的密码
 正常返回
 {"ERRMSG":"ReLogin","ERRCODE":"1"}
 	 */
-	public static final String UPD_USER_PASSWD_URL = BASIC_URL 
+	public static final String UPD_USER_PASSWD_URL = BASIC 
 			+ "/updUserPasswd.action?"
 			+ "SIGNATURE=%s"
 			+ "&PASSWORD=%s"
@@ -301,7 +295,7 @@ UPASSWORD	是	修改后的密码
 请求方式
 http://jhauto.gicp.net/accountclient/app/accredit.action?SIGNATURE=123
 	 */
-	public static final String Receipt_Authorization_List = BASIC_URL 
+	public static final String Receipt_Authorization_List = BASIC 
 			+ "/accredit.action?"
 			+ "SIGNATURE=%s"
 			;
@@ -310,28 +304,16 @@ http://jhauto.gicp.net/accountclient/app/accredit.action?SIGNATURE=123
 	 * http://192.168.0.152:8080/school/web/admin/SchoolCommon/Map.do
 	 * ?SqlId=getversion&type=1
 	 */
-	public static final String UP_VERSION_NEW = BASIC_URL
+	public static final String UP_VERSION_NEW = BASIC
 			// public static final String UP_VERSION_NEW = BASIC_TEST_URL
 			+ "/web/admin/SchoolCommon/Map.do?" + "ver=android"
 			+ "&SqlId=getversion&type=1" + "&verNum=%s";
 
-
-	
-
-
-	// /**
-	// * 报错日志
-	// */
-	// public static final String DEBUG_URL = BASIC_URL_HOST
-	// +"/Dedug?";
-	/**
-	 * 20.异常接口 (1)URL:
-	 * http://schoollink.wodenet.net/school/web/admin/SchoolCommon
-	 * /Add.do?SqlId=insertException
-	 * &type=1&parentStudentContactId=1&exceptionContent=nullPotion
-	 * 说明:type=1表示android; exceptionContent表示异常信息;
-	 */
-	public static final String DEBUG_URL = BASIC_URL
+	public static final String DEBUG_URL = BASIC
 			+ "/web/admin/SchoolCommon/Add.do?" + "ver=android";
+	/**
+	 * 下载帮助文档
+	 */
+	public static final String HELP_DOC = HOST + "/accountclient/images/help.doc";
 	
 }

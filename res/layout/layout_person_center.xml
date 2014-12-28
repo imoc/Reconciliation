@@ -57,7 +57,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_toLeftOf="@+id/imageView11"
-                    android:text="郭小洁" />
+                    android:text="admin" />
             </RelativeLayout>
 
             <TextView
@@ -131,7 +131,7 @@
                 android:gravity="center_vertical"
                 android:paddingLeft="10.0dip"
                 android:paddingRight="10.0dip"
-                android:text="使用帮助" />
+                android:text="查看帮助" />
 
             <TextView
                 android:id="@+id/suggest_set_tv"
@@ -144,7 +144,7 @@
                 android:gravity="center_vertical"
                 android:paddingLeft="10.0dip"
                 android:paddingRight="10.0dip"
-                android:text="意见反馈" />
+                android:text="在线反馈" />
 
             <TextView
                 android:id="@+id/about_set_tv"

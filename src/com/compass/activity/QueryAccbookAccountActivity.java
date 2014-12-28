@@ -169,7 +169,7 @@ public class QueryAccbookAccountActivity extends BaseListActivity implements
 		mTitle.setText("查询结果");
 		ImageView back = (ImageView) findViewById(R.id.left_title_iv);
 		back.setOnClickListener(this);
-		if (mQueryBeen.getQueryType()!=QueryBean.TYPE_BZJ_MX_DZD||mQueryBeen.getQueryType()!=QueryBean.TYPE_HQ_MX_DZD) {
+		if (mQueryBeen.getQueryType()!=QueryBean.TYPE_HQ_MX_DZD) {
 			// 将日历控件添加为listview的头部
 			headView = mInflater.inflate(R.layout.layout_querylisttitle, null);
 			// 将日历控件添加为listview的头部
@@ -222,7 +222,7 @@ public class QueryAccbookAccountActivity extends BaseListActivity implements
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id) {
-				if (mQueryBeen.getQueryType()!=QueryBean.TYPE_BZJ_MX_DZD||mQueryBeen.getQueryType()!=QueryBean.TYPE_HQ_MX_DZD) {
+				if (mQueryBeen.getQueryType()!=QueryBean.TYPE_HQ_MX_DZD) {
 					return;
 				}
 				// AccbookAccounttBeen item = (AccbookAccounttBeen) mAdapter

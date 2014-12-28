@@ -61,7 +61,7 @@ public class AccountEnquiryActivity extends Activity implements OnClickListener 
 	private ListView mQueryTypeLv;
 	private Spinner mAccountspinner;
 	private TextView mTypeTv;
-	private Spinner mFastSectionpinner;
+	private Spinner mFastSectionsSpinner;
 	private Button mFastQueryBt;
 	private Button mSectionQueryBt;
 	private View mSectionPickView;
@@ -83,6 +83,9 @@ public class AccountEnquiryActivity extends Activity implements OnClickListener 
 	private QueryBean queryBeen;
 	private View mQueryTypeLayout;
 	private View mQueryConditionLayout;
+	// 历史查询类型选择 1.已对账 0，未对账
+	private View mHistoryTypeChoseView;
+	private Spinner mHistoryTypeSpinner;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -108,8 +111,27 @@ public class AccountEnquiryActivity extends Activity implements OnClickListener 
 		mQueryTypeLv = (ListView) findViewById(R.id.queryType_lv);
 		mAccountspinner = (Spinner) findViewById(R.id.accountSpinner);
 		mTypeTv = (TextView) findViewById(R.id.queryType_tv);
-		mFastSectionpinner = (Spinner) findViewById(R.id.fastSectionSpinner);
+		mFastSectionsSpinner = (Spinner) findViewById(R.id.fastSectionSpinner);
+		mHistoryTypeChoseView = findViewById(R.id.historyTypyChoseView);
+		mHistoryTypeSpinner = (Spinner) findViewById(R.id.historyTypySpinner);
+
 		//
+		mFastQueryBt = (Button) findViewById(R.id.fastQuery_bt);
+		mSectionQueryBt = (Button) findViewById(R.id.sectionQuery_bt);
+		mQueryBt = (Button) findViewById(R.id.query_bt);
+		mSectionQueryBt.setOnClickListener(this);
+		mTypeTv = (TextView) findViewById(R.id.queryType_tv);
+		mSectionPickView = findViewById(R.id.sectionQueryView);
+		mStartDateV = findViewById(R.id.startDate_v);
+		mStartDateTv = (TextView) findViewById(R.id.startDate_statu);
+		mEndDateV = findViewById(R.id.endDate_v);
+		mEndDateTv = (TextView) findViewById(R.id.endDate_statu);
+
+		mFastQueryBt.setOnClickListener(this);
+		mQueryBt.setOnClickListener(this);
+		mStartDateV.setOnClickListener(this);
+		mEndDateV.setOnClickListener(this);
+
 		List<Map<String, ?>> data = new ArrayList();
 		Map map;
 		for (int i = 0; i < types.length; i++) {
@@ -129,13 +151,14 @@ public class AccountEnquiryActivity extends Activity implements OnClickListener 
 			public void onItemClick(AdapterView<?> arg0, View arg1,
 					int position, long arg3) {
 				queryBeen.setQueryType(position);
-				if (queryBeen.getQueryType()==QueryBean.TYPE_DZD_HZ_SQ) {
-					IntentUtil.start_activity(mContext, BalanceReconciliationListActivity.class,"QueryBeen", queryBeen);
-				return;
+				if (queryBeen.getQueryType() == QueryBean.TYPE_DZD_HZ_SQ) {
+					IntentUtil.start_activity(mContext,
+							BalanceReconciliationListActivity.class,
+							"QueryBeen", queryBeen);
+					return;
 				}
-				
+
 				getAccounts(position);
-				
 
 			}
 		});
@@ -165,8 +188,8 @@ public class AccountEnquiryActivity extends Activity implements OnClickListener 
 				mContext, android.R.layout.simple_spinner_item, sections);
 		sectiontAdapter
 				.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-		mFastSectionpinner.setAdapter(sectiontAdapter);
-		mFastSectionpinner
+		mFastSectionsSpinner.setAdapter(sectiontAdapter);
+		mFastSectionsSpinner
 				.setOnItemSelectedListener(new OnItemSelectedListener() {
 
 					@Override
@@ -193,22 +216,23 @@ public class AccountEnquiryActivity extends Activity implements OnClickListener 
 
 					}
 				});
-		//
-		mFastQueryBt = (Button) findViewById(R.id.fastQuery_bt);
-		mSectionQueryBt = (Button) findViewById(R.id.sectionQuery_bt);
-		mQueryBt = (Button) findViewById(R.id.query_bt);
-		mFastQueryBt.setOnClickListener(this);
-		mSectionQueryBt.setOnClickListener(this);
-		mQueryBt.setOnClickListener(this);
-		mTypeTv = (TextView) findViewById(R.id.queryType_tv);
-		//
-		mSectionPickView = findViewById(R.id.sectionQueryView);
-		mStartDateV = findViewById(R.id.startDate_v);
-		mStartDateTv = (TextView) findViewById(R.id.startDate_statu);
-		mEndDateV = findViewById(R.id.endDate_v);
-		mEndDateTv = (TextView) findViewById(R.id.endDate_statu);
-		mStartDateV.setOnClickListener(this);
-		mEndDateV.setOnClickListener(this);
+		mHistoryTypeSpinner
+				.setOnItemSelectedListener(new OnItemSelectedListener() {
+
+					@Override
+					public void onItemSelected(AdapterView<?> arg0, View arg1,
+							int position, long arg3) {
+						queryBeen.setHistoryType(position);
+					}
+
+					@Override
+					public void onNothingSelected(AdapterView<?> arg0) {
+						// TODO Auto-generated method stub
+
+					}
+				});
+
+		showFastQueryView();
 	}
 
 	private void ininData() {
@@ -246,40 +270,28 @@ public class AccountEnquiryActivity extends Activity implements OnClickListener 
 			}
 			break;
 		case R.id.fastQuery_bt:
-			mSectionQueryBt.setEnabled(true);
-			mFastQueryBt.setEnabled(false);
-			if (mFastSectionpinner.getVisibility() == View.GONE) {
-				mFastSectionpinner.setVisibility(View.VISIBLE);
-			}
-			if (mSectionPickView.getVisibility() == View.VISIBLE) {
-				mSectionPickView.setVisibility(View.GONE);
-			}
+			showFastQueryView();
 			break;
 		case R.id.sectionQuery_bt:
-			mSectionQueryBt.setEnabled(false );
-			mFastQueryBt.setEnabled(true);
-			if (mSectionPickView.getVisibility() == View.GONE) {
-				mSectionPickView.setVisibility(View.VISIBLE);
-			}
-			if (mFastSectionpinner.getVisibility() == View.VISIBLE) {
-				mFastSectionpinner.setVisibility(View.GONE);
-			}
+			showSectionQueryView();
 			break;
 		case R.id.query_bt:
 			L.d(TAG, queryBeen.toString());
 			Intent toQuetyIntent = null;
 			switch (queryBeen.getQueryType()) {
-			case QueryBean.TYPE_HQ_YE_DZD:
-			case QueryBean.TYPE_DQ_YE_DZD:
-			case QueryBean.TYPE_BZJ_YE_DZD:
-				toQuetyIntent = new Intent(this, BalanceReconciliationListActivity.class);
+			case QueryBean.TYPE_HQ_CK_DZD:
+			case QueryBean.TYPE_DQ_CK_DZD:
+			case QueryBean.TYPE_BZJ_CK_DZD:
+				toQuetyIntent = new Intent(this,
+						BalanceReconciliationListActivity.class);
 				break;
 			case QueryBean.TYPE_HQ_MX_DZD:
-			case QueryBean.TYPE_BZJ_MX_DZD:
-				toQuetyIntent = new Intent(this, DetailedReconciliationListActivity.class);
+				toQuetyIntent = new Intent(this,
+						DetailedReconciliationListActivity.class);
 				break;
 			case QueryBean.TYPE_WD_ZW_CX:
-				toQuetyIntent = new Intent(this, AllNotTransitListActivity.class);
+				toQuetyIntent = new Intent(this,
+						AllNotTransitListActivity.class);
 				break;
 
 			default:
@@ -327,6 +339,34 @@ public class AccountEnquiryActivity extends Activity implements OnClickListener 
 	}
 
 	/**
+	 * 显示时间段查询控件
+	 */
+	private void showSectionQueryView() {
+		mSectionQueryBt.setEnabled(false);
+		mFastQueryBt.setEnabled(true);
+		if (mSectionPickView.getVisibility() == View.GONE) {
+			mSectionPickView.setVisibility(View.VISIBLE);
+		}
+		if (mFastSectionsSpinner.getVisibility() == View.VISIBLE) {
+			mFastSectionsSpinner.setVisibility(View.GONE);
+		}
+	}
+
+	/**
+	 * 显示快速查询控件
+	 */
+	private void showFastQueryView() {
+		mSectionQueryBt.setEnabled(true);
+		mFastQueryBt.setEnabled(false);
+		if (mFastSectionsSpinner.getVisibility() == View.GONE) {
+			mFastSectionsSpinner.setVisibility(View.VISIBLE);
+		}
+		if (mSectionPickView.getVisibility() == View.VISIBLE) {
+			mSectionPickView.setVisibility(View.GONE);
+		}
+	}
+
+	/**
 	 * 
 	 * @Title: refreshBlcklogInfors
 	 * @Description: TODO(获得对于查询类型下的账号集合)
@@ -336,20 +376,20 @@ public class AccountEnquiryActivity extends Activity implements OnClickListener 
 	 */
 	private void getAccounts(int position) {
 		L.d(TAG, "获得对于查询类型下的账号集合。。");
-		String url ;
-		if (queryBeen.getQueryType()==QueryBean.TYPE_DZD_HZ_SQ ||queryBeen.getQueryType()==QueryBean.TYPE_WD_ZW_CX) {
+		String url;
+		if (queryBeen.getQueryType() == QueryBean.TYPE_DZD_HZ_SQ
+				|| queryBeen.getQueryType() == QueryBean.TYPE_WD_ZW_CX) {
 			/**
-			 * http://jhauto.gicp.net/accountclient/app/getAccountAll.action?SIGNATURE=123
+			 * http://jhauto.gicp.net/accountclient/app/getAccountAll.action?
+			 * SIGNATURE=123
 			 * 
-			 * public static final String ACCOUNT_ALL = BASIC_URL 
-			+ "/getAccountAll.action?"
-			+ "SIGNATURE=%s"
+			 * public static final String ACCOUNT_ALL = BASIC_URL +
+			 * "/getAccountAll.action?" + "SIGNATURE=%s"
 			 */
-			 url = String.format(Urls.ACCOUNT_ALL,
-						mSpUtil.getSignature());
-		}else {
-			 url = String.format(Urls.GET_ACCOUNTS_URL,
-					mSpUtil.getSignature(), typeParameters[position]);
+			url = String.format(Urls.ACCOUNT_ALL, mSpUtil.getSignature());
+		} else {
+			url = String.format(Urls.GET_ACCOUNTS_URL, mSpUtil.getSignature(),
+					typeParameters[position]);
 		}
 		new GetAccountsAsyncTask().execute(url);
 	}
@@ -381,6 +421,31 @@ public class AccountEnquiryActivity extends Activity implements OnClickListener 
 		dialog.show();
 	}
 
+	/**
+	 * 显示账号列表
+	 */
+	private void initAccountsData() {
+		ArrayAdapter accountAdapter = new ArrayAdapter<String>(
+				mContext, android.R.layout.simple_spinner_item,
+				accounts);
+		accountAdapter
+				.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+		mAccountspinner.setAdapter(accountAdapter);
+
+		mQueryTypeLayout.setVisibility(View.INVISIBLE);
+		mQueryConditionLayout.setVisibility(View.VISIBLE);
+		mTypeTv.setText(types[queryBeen.getQueryType()]);
+		queryBeen.setAccount(accounts[0]);
+		
+		if (queryBeen.getQueryType() == QueryBean.TYPE_DZD_HZ_SQ
+				|| queryBeen.getQueryType() == QueryBean.TYPE_WD_ZW_CX
+				|| queryBeen.getQueryType() == QueryBean.TYPE_HQ_MX_DZD) {
+			mHistoryTypeChoseView.setVisibility(View.GONE);
+		} else {
+			mHistoryTypeChoseView.setVisibility(View.VISIBLE);
+		}
+	}
+
 	class GetAccountsAsyncTask extends AsyncTask<String, Void, Boolean> {
 
 		private Responses_GetAccounts responses_GetAccounts;
@@ -406,7 +471,7 @@ public class AccountEnquiryActivity extends Activity implements OnClickListener 
 						Responses_GetAccounts.class);
 				// accounts = result.split(",");
 				accounts = responses_GetAccounts.getAccounts();
-//				 accounts = TestDataUtil.getAccoutlist();
+				// accounts = TestDataUtil.getAccoutlist();
 				L.d(TAG,
 						"GetAccountsAsyncTask---accounts" + accounts.toString());
 				if (accounts != null && accounts.length > 0) {
@@ -426,26 +491,15 @@ public class AccountEnquiryActivity extends Activity implements OnClickListener 
 		protected void onPostExecute(Boolean result) {
 			super.onPostExecute(result);
 			if (result) {
-				ArrayAdapter accountAdapter = new ArrayAdapter<String>(
-						mContext, android.R.layout.simple_spinner_item,
-						accounts);
-				accountAdapter
-						.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-				mAccountspinner.setAdapter(accountAdapter);
-
-				mQueryTypeLayout.setVisibility(View.INVISIBLE);
-				mQueryConditionLayout.setVisibility(View.VISIBLE);
-				mTypeTv.setText(types[queryBeen.getQueryType()]);
-				queryBeen.setAccount(accounts[0]);
+				initAccountsData();
 
 			} else {
-				UIHelper.HandleErrcode(mContext, responses_GetAccounts.getErrCode());
+				UIHelper.HandleErrcode(mContext,
+						responses_GetAccounts.getErrCode());
 
 			}
 		}
 
 	}
-
-	
 
 }

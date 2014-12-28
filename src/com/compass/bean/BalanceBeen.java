@@ -36,6 +36,11 @@ public class BalanceBeen implements Serializable {
 	public final static int TYPE_OPERATE_ARGEE = 1;
 	public final static int TYPE_OPERATE_NULL = 2;
 	public final static int TYPE_VIP = 1;
+	
+	
+	public final static int TYPE_AUDITSTATE_NO_PASS = 0;
+	public final static int TYPE_AUDITSTATE_PASS = 1;
+	public final static int TYPE_AUDITSTATE_WAIT = 2;
 
 	private String company;// 企业名称
 	private String institution;// 机构
@@ -45,10 +50,13 @@ public class BalanceBeen implements Serializable {
 	private String currency;// 币种
 	private String balance;// 账号余额
 	private int queryType;// 查询类型
+	
 	private String date;// 日期
 	private int checkState;// 对账状态
-	private String auditState;// 审核状态
+	private int auditState;// 审核状态
 	private int operateType;// 操作
+	boolean canOperate ;
+	boolean hasOperated =false ;
 	// -----2014年11月24日14:05:54
 	private String PASSED;// 对账是否通过
 	private String ACCOUNT;// 账号
@@ -62,11 +70,12 @@ public class BalanceBeen implements Serializable {
 	private String CHECKE;// 对账授权标志
 	private String ATTR;//
 	private String ACCS;// 分账号
-	private int ACCOUNTSIGN;// 如果为1是重点账户，需要列明细，不是的话为0
+	private Boolean ISVIP =false;// 如果为1是重点账户，需要列明细，不是的话为0
+	private int OPERATIONTYPE;//1 未操作, 可操作  ；0 操作完成，不可操作
 
 	public BalanceBeen(String company, String accountType, String account,
 			String subAccount, String currency, String balance, int queryType,
-			String date, String checkState, String auditState, int operate) {
+			String date, String checkState, int auditState, int operate) {
 		super();
 		this.company = company;
 		this.accountType = accountType;
@@ -81,9 +90,36 @@ public class BalanceBeen implements Serializable {
 		this.operateType = operate;
 	}
 
+	
+	public boolean isHasOperated() {
+		return hasOperated;
+	}
+
+
+	public void setHasOperated(boolean hasOperated) {
+		this.hasOperated = hasOperated;
+	}
+
+
+	public boolean isCanOperate() {
+		return OPERATIONTYPE==1;
+	}
+
+	public void setCanOperate(boolean canOperate) {
+		this.canOperate = canOperate;
+	}
+
+	public int getOPERATIONTYPE() {
+		return OPERATIONTYPE;
+	}
+
+	public void setOPERATIONTYPE(int oPERATIONTYPE) {
+		OPERATIONTYPE = oPERATIONTYPE;
+	}
+
 	public String getCompany() {
 		// return company;
-		if (getACCOUNTSIGN() == TYPE_VIP) {
+		if (ISVIP) {
 			return CLINAME + "(重点)";
 		}
 		return CLINAME;
@@ -169,26 +205,41 @@ public class BalanceBeen implements Serializable {
 	}
 
 	public int getCheckState() {
-		// return checkState;
-		return Integer.parseInt(CLIENTCHECK);
+		if (hasOperated) {
+			return checkState;
+		} else {
+			return Integer.parseInt(CLIENTCHECK);
+		}
 	}
 
 	public void setCheckState(int checkState) {
 		this.checkState = checkState;
 	}
 
-	public String getAuditState() {
-		return auditState;
+	public int getAuditState() {
+//		return auditState;
+		if (hasOperated) {
+			return auditState;
+		} else {
+			try {
+				return Integer.parseInt(CHECKE);
+			} catch (NumberFormatException e) {
+				e.printStackTrace();
+				return -1;
+			}
+		}
 	}
 
-	public void setAuditState(String auditState) {
+	public void setAuditState(int auditState) {
 		this.auditState = auditState;
 	}
 
 	public int getOperateType() {
-
-		// return operateType;
-		return Integer.parseInt(CLIENTCHECK);
+		if (hasOperated) {
+			 return operateType;
+		} else {
+			return OPERATIONTYPE;
+		}
 	}
 
 	public void setOperateType(int operateType) {
@@ -293,12 +344,12 @@ public class BalanceBeen implements Serializable {
 		ACCS = aCCS;
 	}
 
-	public int getACCOUNTSIGN() {
-		return ACCOUNTSIGN;
+	public Boolean getISVIP() {
+		return ISVIP;
 	}
 
-	public void setACCOUNTSIGN(int aCCOUNTSIGN) {
-		ACCOUNTSIGN = aCCOUNTSIGN;
+	public void setISVIP(Boolean ISVIP) {
+		this.ISVIP = ISVIP;
 	}
 
 	@Override
@@ -308,7 +359,7 @@ public class BalanceBeen implements Serializable {
 				+ LASTTIME + ", BALANCE=" + BALANCE + ", EXITEMNO=" + EXITEMNO
 				+ ", CLIENTCHECK=" + CLIENTCHECK + ", TYPE=" + TYPE
 				+ ", CHECKE=" + CHECKE + ", ATTR=" + ATTR + ", ACCS=" + ACCS
-				+ ", ACCOUNTSIGN=" + ACCOUNTSIGN + "]";
+				+ ", ISVIP=" + ISVIP + "]";
 	}
 
 

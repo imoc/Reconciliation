@@ -26,7 +26,7 @@ public class TestDataUtil {
 	 */
 	public static Responses_Login LoginResp() {
 		// TODO Auto-generated method stub
-		return new Responses_Login("123", System.currentTimeMillis()-3600*24*1000, EntityBase.ERRCODE_SUCCESS, "ok");
+		return new Responses_Login("123", "2014-12-28 10:11:56", EntityBase.ERRCODE_SUCCESS, "ok");
 	}
 
 
@@ -51,7 +51,7 @@ public class TestDataUtil {
 		 for (int i = 0; i < 10; i++) {
 		 buf = "_" + i;
 		
-		 contentItem = new BalanceBeen("company "+buf, "accountType "+buf, "account"+buf, "subAccount "+buf, "currency", "993.99 "+buf, 1, "date", "checkState", "auditState", BalanceBeen.TYPE_OPERATE_NULL);
+		 contentItem = new BalanceBeen("company "+buf, "accountType "+buf, "account"+buf, "subAccount "+buf, "currency", "993.99 "+buf, 1, "date", "checkState", 1, BalanceBeen.TYPE_OPERATE_NULL);
 		 listItems_list.add(contentItem);
 		 contentItem = null;
 		 }

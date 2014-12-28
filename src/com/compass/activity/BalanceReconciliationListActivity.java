@@ -29,6 +29,7 @@ import com.compass.bean.BalanceCategoryListItemEntity;
 import com.compass.bean.BalanceListBean;
 import com.compass.bean.EntityBase;
 import com.compass.bean.QueryBean;
+import com.compass.bean.ResponsesOperate;
 import com.compass.common.https.HttpUtils;
 import com.compass.common.util.DecimalFormatUtil;
 import com.compass.common.util.IntentUtil;
@@ -77,6 +78,7 @@ public class BalanceReconciliationListActivity extends BaseListActivity
 	private Context mContext;
 	private int fromType;
 	private int queryType;
+	//查询历史类型 ；1.已对账 0，未对账 
 
 	private BalanceBeen currentQueryResultBeen;
 	//
@@ -111,6 +113,7 @@ public class BalanceReconciliationListActivity extends BaseListActivity
 		}
 
 	};
+	
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -172,7 +175,9 @@ public class BalanceReconciliationListActivity extends BaseListActivity
 				 */
 				more_url = String.format(Urls.ACC_DETAIL_URL,
 						mSpUtil.getSignature(), mQueryBeen.getAccount(),
-						mQueryBeen.getStratDate(), mQueryBeen.getEndDate());
+						mQueryBeen.getStratDate(), mQueryBeen.getEndDate(),
+						mQueryBeen.getHistoryType()
+						);
 				break;
 			}
 			break;
@@ -214,20 +219,20 @@ public class BalanceReconciliationListActivity extends BaseListActivity
 
 				BalanceBeen item = (BalanceBeen) mAdapter
 						.getItem(position-1);
-				if (item.getACCOUNTSIGN() != BalanceBeen.TYPE_VIP) {
+				if (!item.getISVIP()) {
 					T.showShort(mContext, "不是重点账户，无流水账单");
 					L.v(TAG, "不是重点账户，无流水账单");
 					return;
 				}
 				QueryBean queryBean = new QueryBean();
 				queryBean.setAccount(item.getAccount());
-				// queryBean.setQueryType(QueryBean.type_detail);
+				queryBean.setQueryType(QueryBean.TYPE_HQ_MX_DZD);
 				queryBean.setFromType(QueryBean.FROMTYPE_QUERYTYPE);
-				// Intent intent = new
-				// Intent(QueryResultActivity.this,QueryResultActivity.class);
+				queryBean.setStratDate(item.getDate().substring(0, item.getDate().lastIndexOf("-"))+"-01");
+				queryBean.setEndDate(item.getDate());;
 				Intent intent = new Intent(
 						BalanceReconciliationListActivity.this,
-						QueryAccbookAccountActivity.class);
+						DetailedReconciliationListActivity.class);
 				intent.putExtra("QueryBeen", queryBean);
 				startActivity(intent);
 
@@ -379,20 +384,41 @@ public class BalanceReconciliationListActivity extends BaseListActivity
 			switch (item.getCheckState()) {
 			case 0:
 				holder.checkState_tv.setText("未操作");
-				holder.operate_tv.setText("未操作");
-				holder.operate_tv.setTextColor(getResources().getColor(R.color.blue_name));
 				break;
 			case 1:
 				holder.checkState_tv.setText("相符");
-				holder.operate_tv.setText("对账完成");
-				holder.operate_tv.setTextColor(getResources().getColor(R.color.black_content));
 				break;
 			case 2:
 				holder.checkState_tv.setText("不相符");
-				holder.operate_tv.setText("对账完成");
-				holder.operate_tv.setTextColor(getResources().getColor(R.color.black_content));
 				break;
 
+			default:
+				break;
+			}
+			
+			switch (item.getAuditState()) {
+			case BalanceBeen.TYPE_AUDITSTATE_NO_PASS:
+				holder.auditState_tv.setText("审核未通过");
+				break;
+			case BalanceBeen.TYPE_AUDITSTATE_PASS:
+				holder.auditState_tv.setText("审核通过");
+				break;
+			case BalanceBeen.TYPE_AUDITSTATE_WAIT:
+				holder.auditState_tv.setText("待审核");
+				break;
+			default:
+				break;
+			}
+			
+			switch (item.getOperateType()) {
+			case 1:
+				holder.operate_tv.setText("未操作");
+				holder.operate_tv.setTextColor(getResources().getColor(R.color.blue_name));
+				break;
+			case 0:
+				holder.operate_tv.setText("对账完成");
+				holder.operate_tv.setTextColor(getResources().getColor(R.color.black_content));;
+				break;
 			default:
 				break;
 			}
@@ -404,7 +430,6 @@ public class BalanceReconciliationListActivity extends BaseListActivity
 			holder.account_tv.setText(item.getAccount());
 			holder.balance_tv.setText(DecimalFormatUtil.groubingSize3(item.getBalance()));
 			holder.date_tv.setText(item.getDate());
-			holder.auditState_tv.setText(item.getAuditState());
 			holder.operate_tv.setOnClickListener(new OperateOnClickListener(
 					ParameterType.operate, item));
 			//
@@ -428,9 +453,9 @@ public class BalanceReconciliationListActivity extends BaseListActivity
 				// 赞图标事件
 				case operate:
 					L.d(TAG, "onClick operate " + item);
-					/*if (item.getOperateType() != QueryResultBeen.TYPE_OPERATE_NULL) {
+					if (item.getOperateType() != 1) {
 						return;
-					}*/
+					}
 					currentQueryResultBeen = item;
 					showChildQuickActionBar(v);
 					break;
@@ -488,8 +513,8 @@ public class BalanceReconciliationListActivity extends BaseListActivity
 				UIHelper.HandleErrcode(mContext, position);
 				break;
 			}
-			IntentUtil.start_activityForResult(mContext, VerifyActivity.class,IntentUtil.REQUEST_CODE_VERIFY );
-//			submitOperate();
+//			IntentUtil.start_activityForResult(mContext, VerifyActivity.class,IntentUtil.REQUEST_CODE_VERIFY );
+			submitOperate();
 
 		}
 
@@ -499,12 +524,24 @@ public class BalanceReconciliationListActivity extends BaseListActivity
 		 * public static final String OPERATE_URL = BASIC_URL +
 		 * "/app/accUpdate.action?" + "signature=%s" + "&account=%s" +
 		 * "&accs=null" + "&dates=%s" + "&clientcheck=%s" + "&type=0"
+		 * 
+		 * 	+ "/accUpdate.action?"
+			+ "SIGNATURE=%s"
+			+ "&ACCOUNT=%s"
+			+ "&ACCS=null"
+			+ "&DATES=%s"
+			+ "&CLIENTCHECK=%s"
+			+ "&CHECKE=%s"
+			+ "&TYPE=0"
 		 */
 		
 		String operateUrl = String.format(Urls.OPERATE_URL,
 				mSpUtil.getSignature(),
 				currentQueryResultBeen.getAccount(),
-				currentQueryResultBeen.getDate(), operateType);
+				currentQueryResultBeen.getDate(),
+				operateType,
+				currentQueryResultBeen.getAuditState()
+				);
 		new LoginAsyncTask().execute(operateUrl, ParameterType.operate,
 				currentQueryResultBeen, operateType);
 	}
@@ -616,7 +653,7 @@ public class BalanceReconciliationListActivity extends BaseListActivity
 		private BalanceBeen item;
 		private ParameterType paramType;
 		private int operateType;
-		private EntityBase resp;
+		private ResponsesOperate resp;
 
 		@Override
 		protected void onPreExecute() {
@@ -641,7 +678,7 @@ public class BalanceReconciliationListActivity extends BaseListActivity
 					L.d(TAG, "LoginAsyncTask operate");
 					item = (BalanceBeen) params[2];
 					operateType = (Integer) params[3];
-					resp = mGson.fromJson(result, EntityBase.class);
+					resp = mGson.fromJson(result, ResponsesOperate.class);
 					// resp = TestDataUtil.getOperateResp();
 					if (resp.getERRCODE() == EntityBase.ERRCODE_SUCCESS) {
 						return true;
@@ -673,7 +710,10 @@ public class BalanceReconciliationListActivity extends BaseListActivity
 					} else {
 						T.showLong(getApplicationContext(), "操作成功");
 					}
-					item.setOperateType(operateType);
+					item.setHasOperated(true);
+					item.setOperateType(resp.getOperateType());
+					item.setCheckState(resp.getCheckState());
+					item.setAuditState(resp.getAuditState());
 					mAdapter.notifyDataSetChanged();
 					break;
 
@@ -686,7 +726,7 @@ public class BalanceReconciliationListActivity extends BaseListActivity
 				case operate:
 					UIHelper.HandleErrcode(mContext, resp.getErrCode());
 					if (null != resp && !TextUtils.isEmpty(resp.getERRMSG())) {
-						T.showLong(getApplicationContext(), resp.getERRCODE());
+						T.showLong(getApplicationContext(), resp.getERRMSG());
 
 					} else {
 

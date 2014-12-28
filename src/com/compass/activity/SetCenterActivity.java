@@ -4,6 +4,7 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.InputType;
@@ -78,11 +79,7 @@ public class SetCenterActivity extends BaseActivity implements OnClickListener,
 	private ImageView visionUp_new_statu_iv;
 	private TextView visionNum_statu_tv;
 	private TextView upVision_lable_tv;
-	/*
-	 * // 关于 private View mAboutView; // 反馈 private View mFeedBackView; private
-	 * EditText mFeedBackET; private Button mFeedBackBtn;
-	 */
-	//
+
 	private Context mContext;
 	private PushApplication mApplication;
 	private SharePreferenceUtil mSpUtil;
@@ -103,7 +100,6 @@ public class SetCenterActivity extends BaseActivity implements OnClickListener,
 	private View mAboutSet;
 	private View mAboutView;
 	//
-	// textContent (babyName，school，class,signature)----
 	private View babyName_v;
 	private View mEditSetView;
 	private EditText mContentEdit;
@@ -428,11 +424,15 @@ public class SetCenterActivity extends BaseActivity implements OnClickListener,
 			break;
 
 		case R.id.help_set_tv:
-			mSlidingLayer.removeAllViews();
+			/*mSlidingLayer.removeAllViews();
 			if (!mSlidingLayer.isOpened()) {
 				mSlidingLayer.addView(mHelpView);
 				mSlidingLayer.openLayer(true);
-			}
+			}*/
+			String helpUrl = Urls.HELP_DOC;
+			Uri uri = Uri.parse(helpUrl);  
+		    Intent it = new Intent(Intent.ACTION_VIEW, uri);  
+		    mContext.startActivity(it);
 			break;
 		case R.id.suggest_set_tv:
 			mSlidingLayer.removeAllViews();

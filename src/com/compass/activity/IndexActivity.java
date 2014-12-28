@@ -28,7 +28,6 @@ import com.compass.common.https.HttpUtils;
 import com.compass.common.util.IntentUtil;
 import com.compass.common.util.L;
 import com.compass.common.util.SharePreferenceUtil;
-import com.compass.common.util.TimeUtil;
 import com.compass.reconciliation.R;
 import com.google.gson.Gson;
 
@@ -98,7 +97,7 @@ public class IndexActivity extends Activity implements OnClickListener {
 		mBacklogInforsLv = (ListView) findViewById(R.id.banklog_inforsLv);
 
 		mAliasTv.setText(mSpUtil.getAlias());
-		mLastLoginTimeTv.setText(TimeUtil.getTime(mSpUtil.getLastLoginTime()));
+		mLastLoginTimeTv.setText(mSpUtil.getLastLoginTime());
 		//
 		mBanklogInforList = new ArrayList<BanklogInforItem>();
 		adapter = new BacklogInforsAdapter();

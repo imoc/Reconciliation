@@ -126,6 +126,7 @@ public class LoginActivity extends BaseActivity implements OnClickListener {
 		/**
 		 * 00140011055  pdxczj 123     
 			4010714662    pdxllchglaxjzh  123
+			4011214029   shljtmc 123 (双人对账)
 		 */
 		 mAliasEt.setText("pdxczj");
 		 mAccountEt.setText("00140011055");
@@ -280,6 +281,7 @@ public class LoginActivity extends BaseActivity implements OnClickListener {
 		mSpUtil.SetPassWord(mPasswordEt.getText().toString().trim());
 		mSpUtil.setSignature(resp.getSIGNATURE());
 		mSpUtil.setLastLoginTime(resp.getLastLoginTime());
+		mSpUtil.setIsDouble(resp.getIsDouble());
 
 	}
 

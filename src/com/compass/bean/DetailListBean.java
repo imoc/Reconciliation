@@ -10,7 +10,9 @@ import java.util.List;
  * @date 2014年12月9日 下午2:53:26
  * 
  * 
- *       {"DATA":
+
+ *       {"TOPMAP":{"BANKNAME":"营业部","EXITEMNO":"2001","ACCOUNT":"401103010300000048249","CLINAME":"平定县财政局"},
+ *       "DATA":
  *       	[
 		 *       {"D31ACCS":15000,"D31AMT":0,"D31BALE":-15000,"D31VOUN":
 		 *       "20141004947302"
@@ -35,8 +37,18 @@ public class DetailListBean extends EntityBase {
 		// TODO Auto-generated constructor stub
 	}
 
+	private TOPMAP TOPMAP;
+	
 	private List<DetailBean> DATA;
 
+
+	public TOPMAP getTOPMAP() {
+		return TOPMAP;
+	}
+
+	public void setTOPMAP(TOPMAP tOPMAP) {
+		TOPMAP = tOPMAP;
+	}
 
 	public List<DetailBean> getDATA() {
 		return DATA;
@@ -49,6 +61,62 @@ public class DetailListBean extends EntityBase {
 	@Override
 	public String toString() {
 		return "Responses_GetAccounts [data=" + DATA + super.toString() + "]";
+	}
+	
+	public class TOPMAP{
+		 //{"TOPMAP":{"BANKNAME":"营业部","EXITEMNO":"2001","ACCOUNT":"401103010300000048249","CLINAME":"平定县财政局"},
+		String BANKNAME ;//  机 构 名 称
+		String EXITEMNO ;//科 目 号
+		String ACCOUNT ;// 账  号
+		String CLINAME ;//户  名
+		
+		private String institution;// 机构
+		private String currency;// 币种
+		private String account;// 账号
+		private String company;// 户  名
+		private String subject;// 科 目 号
+		
+		public String getBANKNAME() {
+			return BANKNAME;
+		}
+		public void setBANKNAME(String bANKNAME) {
+			BANKNAME = bANKNAME;
+		}
+		public String getEXITEMNO() {
+			return EXITEMNO;
+		}
+		public void setEXITEMNO(String eXITEMNO) {
+			EXITEMNO = eXITEMNO;
+		}
+		public String getACCOUNT() {
+			return ACCOUNT;
+		}
+		public void setACCOUNT(String aCCOUNT) {
+			ACCOUNT = aCCOUNT;
+		}
+		public String getCLINAME() {
+			return CLINAME;
+		}
+		public void setCLINAME(String cLINAME) {
+			CLINAME = cLINAME;
+		}
+		
+		public String getAgencyTv() {
+			return BANKNAME;
+		}
+		public String getAccount() {
+			return ACCOUNT;
+		}
+		public String getName() {
+			return CLINAME;
+		}
+		public String getSubject() {
+			return EXITEMNO;
+		}
+		
+		
+		
+		
 	}
 
 }

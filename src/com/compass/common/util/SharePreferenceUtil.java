@@ -26,12 +26,13 @@ public class SharePreferenceUtil {
 	}
 
 	// LastLoginTime 上次登录时间
-	public long getLastLoginTime() {
-		return sp.getLong("lastLoginTime", 0);
+	public String getLastLoginTime() {
+		return sp.getString("lastLoginTime", "");
 	}
 
-	public void setLastLoginTime(long lastLoginTime) {
-		editor.putLong("lastLoginTime", lastLoginTime);
+	
+	public void setLastLoginTime(String lastLoginTime) {
+		editor.putString("lastLoginTime", lastLoginTime);
 		editor.commit();
 
 	}
@@ -151,6 +152,15 @@ public class SharePreferenceUtil {
 	 */
 	public void clearSp() {
 		editor.clear().commit();
+	}
+
+	public void setIsDouble(Boolean isdouble) {
+		editor.putBoolean("isdouble", isdouble);
+		editor.commit();
+		
+	}
+	public Boolean getIsDouble() {
+		return sp.getBoolean("isdouble", false);
 	}
 
 }

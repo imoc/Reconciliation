@@ -92,7 +92,7 @@ public class Version {
 //		 return
 //		 "http://192.168.0.88:8080/BaiduPushService/app/hscs_3.0.apk";//test
 		// ------------------
-		return Urls.BASIC_URL + path;
+		return Urls.BASIC + path;
 	}
 
 	public void setDownloadUrl(String downloadUrl) {

@@ -18,26 +18,25 @@ public class QueryBean implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	/**
-	 * <string-array name="queryType">
-        <item>活期余额对账单</item>
-        <item>定期余额对账单</item>
-        <item>保证金余额对账单</item>
+        <string-array name="queryType">
+        <item>活期存款对账</item>
+        <item>定期存款对账</item>
+        <item>保证金存款对账</item>
         <item>活期明细对账单</item>
-        <item>保证金明细对账单</item>
         <item>对账单回执授权</item>
         <item>未达账务查询</item>
+    	</string-array>
         =========================
         <item>未对账的活期账户余额对账单有</item>
         <item>未对账的定期账户余额对账单有</item>
         <item>未对账的保证金账户余额对账单有</item>
 	 */
-	public final static int  TYPE_HQ_YE_DZD = 0;
-	public final static int  TYPE_DQ_YE_DZD = 1;
-	public final static int  TYPE_BZJ_YE_DZD = 2;
+	public final static int  TYPE_HQ_CK_DZD = 0;
+	public final static int  TYPE_DQ_CK_DZD = 1;
+	public final static int  TYPE_BZJ_CK_DZD = 2;
 	public final static int  TYPE_HQ_MX_DZD = 3;
-	public final static int  TYPE_BZJ_MX_DZD = 4;
-	public final static int  TYPE_DZD_HZ_SQ = 5;
-	public final static int  TYPE_WD_ZW_CX = 6;
+	public final static int  TYPE_DZD_HZ_SQ = 4;
+	public final static int  TYPE_WD_ZW_CX = 5;
 	//-----------------
 	public final static int  TYPE_WDZ_HQ_YE_DZD = 0;
 	public final static int  TYPE_WDZ_DQ_YE_DZD = 1;
@@ -54,6 +53,8 @@ public class QueryBean implements Serializable {
 	private int fromType;
 	private String startDate;
 	private String endDate;
+	//查询历史类型 ；1.已对账 0，未对账 
+	private int historyType;
 	//
 	private int accountType;// 用户类型（0网点用户，1企业用户）
 	
@@ -93,6 +94,12 @@ public class QueryBean implements Serializable {
 	}
 	public void setEndDate(String endDate) {
 		this.endDate = endDate;
+	}
+	public int getHistoryType() {
+		return historyType;
+	}
+	public void setHistoryType(int historyType) {
+		this.historyType = historyType;
 	}
 	@Override
 	public String toString() {

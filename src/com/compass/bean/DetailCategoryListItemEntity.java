@@ -2,6 +2,8 @@ package com.compass.bean;
 
 import java.util.List;
 
+import com.compass.bean.DetailListBean.TOPMAP;
+
 /**
  * 
 * @ClassName: QueryCategoryListItemEntity 
@@ -39,6 +41,16 @@ public class DetailCategoryListItemEntity extends BaseContentList {
 	public String toString() {
 		return "QueryCategoryListItemEntity [items=" + items + "] "
 				+ super.getMore_url();
+	}
+
+	private TOPMAP TOPMAP;
+	
+	public TOPMAP getTOPMAP() {
+		return TOPMAP;
+	}
+
+	public void setTOPMAP(TOPMAP tOPMAP) {
+		TOPMAP = tOPMAP;
 	}
 
 }

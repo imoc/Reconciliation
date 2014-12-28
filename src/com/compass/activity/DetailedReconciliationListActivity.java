@@ -25,6 +25,7 @@ import com.compass.app.config.Constants.MsgWhatType;
 import com.compass.bean.DetailBean;
 import com.compass.bean.DetailCategoryListItemEntity;
 import com.compass.bean.DetailListBean;
+import com.compass.bean.DetailListBean.TOPMAP;
 import com.compass.bean.EntityBase;
 import com.compass.bean.QueryBean;
 import com.compass.common.https.HttpUtils;
@@ -91,6 +92,7 @@ public class DetailedReconciliationListActivity extends BaseListActivity
 			case MsgWhatType.LOAD_OK:
 				more_url = loadMoreEntity.getMore_url();
 				mAdapter.appendToList(loadMoreEntity.getItems());
+				initTopView(loadMoreEntity.getTOPMAP());
 				break;
 			case MsgWhatType.REFRESH_OK:
 				more_url = loadMoreEntity.getMore_url();
@@ -115,6 +117,19 @@ public class DetailedReconciliationListActivity extends BaseListActivity
 		initData();
 		initView();
 
+	}
+
+	protected void initTopView(DetailListBean.TOPMAP topmap) {
+		((TextView) headView.findViewById(R.id.accountTv))
+		.setText("账        号：" + topmap.getAccount());
+		((TextView) headView.findViewById(R.id.agencyTv))
+		.setText("机构名称：" + topmap.getAgencyTv());
+		((TextView) headView.findViewById(R.id.subjectTv))
+		.setText("科目号   ：" + topmap.getSubject());
+		((TextView) headView.findViewById(R.id.nameTv))
+		.setText("户       名：" + topmap.getName());
+
+		
 	}
 
 	private void initData() {
@@ -180,9 +195,7 @@ public class DetailedReconciliationListActivity extends BaseListActivity
 				.getQueryType()]);
 		headView = mInflater.inflate(R.layout.layout_query_detail_top, null);
 		listview.addHeaderView(headView);
-		((TextView) headView.findViewById(R.id.accountTv))
-				.setText("账        号：" + mQueryBeen.getAccount());
-
+		
 		/*
 		 * String detailTopUrl = String.format( Urls.DETAIL_TOP_URL,
 		 * mQueryBeen.getQueryType(), mQueryBeen.getAccount(),
@@ -387,6 +400,7 @@ public class DetailedReconciliationListActivity extends BaseListActivity
 								&& resp.getERRCODE() == EntityBase.ERRCODE_SUCCESS) {
 							L.d(TAG, "DetailListBean = " + resp.toString());
 							loadMoreEntity.setItems(resp.getDATA());
+							loadMoreEntity.setTOPMAP(resp.getTOPMAP());
 							loadMoreEntity.setMore_url("url");
 							mHandler.sendEmptyMessage(ok);
 						} else {
