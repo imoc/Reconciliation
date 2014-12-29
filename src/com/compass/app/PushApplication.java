@@ -114,6 +114,7 @@ public class PushApplication extends Application {
 	public void logout() {
 
 		exit();// 关闭所有Activity
+		cleanDB();
 	}
 
 }
