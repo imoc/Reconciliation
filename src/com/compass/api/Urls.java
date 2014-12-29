@@ -8,12 +8,11 @@ package com.compass.api;
 public class Urls {
 
 	//测试环境
-	public static final String HOST = "http://192.168.0.172:8080";
+//	public static final String HOST = "http://192.168.0.172:8080";
 	//实际环境
-//	public static final String HOST = "http://jhauto.gicp.net";
+	public static final String HOST = "http://jhauto.gicp.net";
 	
 	public static final String BASIC = HOST+"/accountclient/app";
-	public static final String BASIC_URL_Login = HOST+"/accountclient/api";
 
 	/**
 	 * 登录
