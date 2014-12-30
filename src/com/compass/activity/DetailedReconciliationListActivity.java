@@ -25,7 +25,6 @@ import com.compass.app.config.Constants.MsgWhatType;
 import com.compass.bean.DetailBean;
 import com.compass.bean.DetailCategoryListItemEntity;
 import com.compass.bean.DetailListBean;
-import com.compass.bean.DetailListBean.TOPMAP;
 import com.compass.bean.EntityBase;
 import com.compass.bean.QueryBean;
 import com.compass.common.https.HttpUtils;

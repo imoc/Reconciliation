@@ -4,7 +4,6 @@
     android:layout_height="match_parent"
     android:background="@color/login_activity_bg" >
 
-    
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -20,13 +19,13 @@
 
             <ImageView
                 android:id="@+id/idImageVLoginTop"
-                android:layout_width="280dp"
-                android:layout_height="84dp"
+                android:layout_width="300dp"
+                android:layout_height="100dp"
                 android:layout_centerHorizontal="true"
-                android:background="@drawable/login_top" />
+                android:background="@drawable/logo" />
 
             <EditText
-                android:id="@+id/alias_input"
+                android:id="@+id/account_input"
                 style="@style/LoginUserNamePwdTheme"
                 android:layout_below="@+id/idImageVLoginTop"
                 android:layout_centerHorizontal="true"
@@ -34,29 +33,31 @@
                 android:background="@color/white"
                 android:drawableLeft="@drawable/login_01"
                 android:drawablePadding="10dp"
-                android:hint="@string/login_alias"
+                android:hint="@string/login_username"
                 android:paddingLeft="10dp"
                 android:singleLine="true"
-                android:text="sxthydzsgcyxgs" />
+                android:text=""
+                android:textColorHint="@color/black_content" />
 
             <EditText
-                android:id="@+id/account_input"
+                android:id="@+id/alias_input"
                 style="@style/LoginUserNamePwdTheme"
-                android:layout_below="@+id/alias_input"
+                android:layout_below="@+id/account_input"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="@dimen/login_margin_top"
                 android:background="@color/white"
                 android:drawableLeft="@drawable/login_01"
                 android:drawablePadding="10dp"
-                android:hint="@string/login_username"
+                android:hint="@string/login_alias"
                 android:paddingLeft="10dp"
                 android:singleLine="true"
-                android:text="4011034326" />
+                android:text=""
+                android:textColorHint="@color/black_content" />
 
             <EditText
                 android:id="@+id/password"
                 style="@style/LoginUserNamePwdTheme"
-                android:layout_below="@+id/account_input"
+                android:layout_below="@+id/alias_input"
                 android:layout_centerHorizontal="true"
                 android:layout_marginLeft="6dp"
                 android:layout_marginTop="@dimen/login_margin_top"
@@ -67,7 +68,8 @@
                 android:inputType="textPassword"
                 android:paddingLeft="10dp"
                 android:singleLine="true"
-                android:text="123" />
+                android:text=""
+                android:textColorHint="@color/black_content" />
 
             <Button
                 android:id="@+id/login_btn"
@@ -106,6 +108,7 @@
                     android:layout_marginRight="8dp"
                     android:clickable="true"
                     android:padding="6dp"
+                    android:visibility="invisible"
                     android:text="忘记密码" />
             </RelativeLayout>
         </RelativeLayout>

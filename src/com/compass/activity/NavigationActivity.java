@@ -3,7 +3,6 @@ package com.compass.activity;
 import java.util.ArrayList;
 import java.util.List;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
@@ -13,6 +12,7 @@ import android.view.View;
 import com.baidu.mobstat.StatService;
 import com.compass.adapter.ViewPagerAdapter;
 import com.compass.reconciliation.R;
+import com.compass.view.ui.base.BaseActivity;
 import com.compass.widget.FlowIndicator;
 
 /**
@@ -22,7 +22,7 @@ import com.compass.widget.FlowIndicator;
  * @date 2014年5月20日 下午6:43:27
  * @author 李小伟
  */
-public class NavigationActivity extends Activity implements
+public class NavigationActivity extends BaseActivity implements
 		OnPageChangeListener {
 
 	private ViewPager vp;

@@ -2,7 +2,7 @@ package com.compass.api;
 
 
 /**
- * @author daodao（dao。dev@qq.com）
+ * @author daodao（dao.dev@qq.com）
  *
  */
 public class Urls {

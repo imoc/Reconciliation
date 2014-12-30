@@ -22,6 +22,7 @@ import android.widget.TextView;
 import com.baidu.mobstat.StatService;
 import com.compass.api.Urls;
 import com.compass.app.PushApplication;
+import com.compass.app.config.Constants;
 import com.compass.bean.EntityBase;
 import com.compass.bean.UpdatePsdResponses;
 import com.compass.common.https.HttpUtils;
@@ -36,7 +37,7 @@ import com.compass.common.util.SharePreferenceUtil;
 import com.compass.common.util.T;
 import com.compass.reconciliation.R;
 import com.compass.test.UIHelper;
-import com.compass.view.BaseActivity;
+import com.compass.view.ui.base.BaseActivity;
 import com.compass.widget.slidinglayer.SlidingLayer;
 import com.compass.widget.slidinglayer.SlidingLayer.OnInteractListener;
 import com.google.gson.Gson;
@@ -118,9 +119,6 @@ public class SetCenterActivity extends BaseActivity implements OnClickListener,
 
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_peason_center);
-		//
-		PushApplication.getInstance().addActivity(this);
-		//
 		initData();
 		initView();
 	}
@@ -307,7 +305,6 @@ public class SetCenterActivity extends BaseActivity implements OnClickListener,
 
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-		// TODO Auto-generated method stub
 		super.onActivityResult(requestCode, resultCode, data);
 		switch (requestCode) {
 		case IntentUtil.REQUEST_CODE_VERIFY:
@@ -337,7 +334,7 @@ public class SetCenterActivity extends BaseActivity implements OnClickListener,
 
 		switch (v.getId()) {
 		case R.id.left_title_iv:
-			finish();
+			sendBroadcast(new Intent(Constants.Action.TO_INDEX));
 			break;
 		case R.id.exit_app:
 			mSlidingLayer.removeAllViews();// 先移除所有的view,不然会报错
@@ -530,10 +527,10 @@ public class SetCenterActivity extends BaseActivity implements OnClickListener,
 	private void checkSheet(ParameterType paramType, final String newContent) {
 
 		int lengh;
-		T.showShortDebug(getApplicationContext(), paramType + "  ==  "
+		T.showShortDebug(mContext, paramType + "  ==  "
 				+ newContent);
 		if (TextUtils.isEmpty(newContent)) {
-			showShortToast(getResources().getString(R.string.no_null));
+			T.showShort(mContext, R.string.no_null);
 			return;
 		} else {
 			lengh = newContent.length();
@@ -613,23 +610,22 @@ public class SetCenterActivity extends BaseActivity implements OnClickListener,
 	 */
 	private void upPassword(String oldPsd, String newPsdDFir, String newPsdConf) {
 		if (TextUtils.isEmpty(oldPsd)) {
-			showShortToast(getResources().getString(R.string.user_pwd));
+			T.showShort(mContext, R.string.user_pwd_empty);
 			return;
 		} else if (TextUtils.isEmpty(newPsdDFir)) {
-			showShortToast(getResources().getString(R.string.user_pwd_new));
+			T.showShort(mContext, R.string.user_pwd_new);
 			return;
 		} else if (TextUtils.isEmpty(newPsdConf)) {
-			showShortToast(getResources().getString(R.string.user_pwd_conf));
+			T.showShort(mContext, R.string.user_pwd_conf);
 			return;
 		} else if (!newPsdDFir.equals(newPsdConf)) {
-			showShortToast(getResources().getString(R.string.user_pwd_unSame));
+			T.showShort(mContext, R.string.user_pwd_unSame);
 			return;
 		} else if (newPsdDFir.length() < 6) {
-			showShortToast(getResources().getString(
-					R.string.tip_psw_lengh_less_6));
+			T.showShort(mContext, R.string.tip_psw_lengh_less_6);
 			return;
 		} else if (!NetWorkHelper.checkNetState(this)) {
-			showLongToast(getResources().getString(R.string.httpisNull));
+			T.showShort(mContext, R.string.httpisNull);
 			return;
 		} else {
 			// showLoginDialog();
@@ -697,7 +693,7 @@ public class SetCenterActivity extends BaseActivity implements OnClickListener,
 				mSlidingLayer.closeLayer(true);
 				mSlidingLayer.removeAllViews();
 			} else {
-				finish();
+				sendBroadcast(new Intent(Constants.Action.TO_INDEX));
 			}
 
 			return true;// 监听不在传递

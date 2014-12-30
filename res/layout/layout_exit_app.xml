@@ -12,7 +12,7 @@
         android:visibility="invisible" />
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:background="@color/white"
@@ -27,7 +27,8 @@
             android:gravity="center"
             android:padding="14.0dip"
             android:text="@string/exit_confirm_toast"
-            android:textSize="14sp" />
+            android:textSize="14sp"
+            android:visibility="gone" />
 
         <Button
             android:id="@+id/confirm_exit_btn"
@@ -37,7 +38,7 @@
             android:layout_marginBottom="20.0dip"
             android:layout_marginLeft="10.0dip"
             android:layout_marginRight="10.0dip"
-            android:layout_marginTop="15.0dip"
+            android:layout_marginTop="20.0dip"
             android:background="@drawable/common_btn_red"
             android:text="@string/exit_confirm" />
 

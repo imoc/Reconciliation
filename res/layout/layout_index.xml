@@ -2,19 +2,16 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
+    android:background="@drawable/background"
     android:orientation="vertical" >
 
-    <include
-        android:layout_width="match_parent"
-        layout="@layout/title_view" />
+    <include layout="@layout/title_view" />
 
     <include layout="@layout/net_status_bar" />
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/white"
         android:fillViewport="true"
         android:focusable="true"
         android:focusableInTouchMode="true" >
@@ -22,14 +19,12 @@
         <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:background="@color/white"
             android:orientation="vertical"
             android:paddingLeft="@dimen/padding"
             android:paddingRight="12.0dip"
             android:paddingTop="10.0dip" >
 
             <RelativeLayout
-                android:id="@+id/lastLoginTime_v"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:clickable="true"
@@ -37,23 +32,24 @@
 
                 <TextView
                     android:id="@+id/aliasTv"
+                    style="@style/inf_lable_Font"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/padding"
+                    android:layout_centerVertical="false"
                     android:drawableLeft="@drawable/sun"
                     android:text="alias"
-                    android:textColor="@color/button_unselected"
-                    android:textSize="12.0sp" />
+                    android:textColor="@color/blue_name" />
 
                 <TextView
                     android:id="@+id/helloContextTv"
+                    style="@style/inf_lable_Font"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/aliasTv"
                     android:layout_marginLeft="30dp"
+                    android:singleLine="false"
                     android:text="@string/hello"
-                    android:textColor="@color/button_unselected"
-                    android:textSize="12.0sp" />
+                    android:textColor="@color/blue_name" />
             </RelativeLayout>
 
             <RelativeLayout
@@ -66,18 +62,18 @@
 
                 <TextView
                     android:id="@+id/lastLoginTime_lable"
+                    style="@style/inf_lable_Font"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/padding"
                     android:drawableLeft="@drawable/time"
                     android:text="上次登录时间 "
                     android:textColor="@color/button_unselected" />
 
                 <TextView
                     android:id="@+id/lastLoginTime_statu"
+                    style="@style/inf_lable_Font"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/padding"
                     android:layout_toRightOf="@+id/lastLoginTime_lable"
                     android:text=" 2014-11-18 11:13:49"
                     android:textColor="@color/button_unselected" />
@@ -92,19 +88,19 @@
                 android:orientation="vertical" >
 
                 <TextView
+                    style="@style/inf_lable_Font"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/padding"
                     android:drawableLeft="@drawable/dp"
                     android:text="@string/backlog_information"
                     android:textColor="@color/black" />
 
                 <ListView
-                    android:layout_marginTop="@dimen/padding"
-                    android:layout_marginLeft="16dp"
                     android:id="@+id/banklog_inforsLv"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="@dimen/padding"
                     android:divider="@null"
                     android:entries="@array/queryType"
                     android:listSelector="@drawable/list_selector"

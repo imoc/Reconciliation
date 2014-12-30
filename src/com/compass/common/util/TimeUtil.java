@@ -66,9 +66,8 @@ public class TimeUtil {
 	 * @Exception 发生异常
 	 */
 	public static int getDayForWeek(String pTime) throws Exception {
-		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 		Calendar c = Calendar.getInstance();
-		c.setTime(format.parse(pTime));
+		c.setTime(getDate(pTime));
 		int dayForWeek = 0;
 		if (c.get(Calendar.DAY_OF_WEEK) == 1) {
 			dayForWeek = 7;
@@ -91,4 +90,19 @@ public class TimeUtil {
 		int dayForWeek = getDayForWeek(pTime);
 		return weekStrs[dayForWeek - 1];
 	}
+	
+	
+	/** 
+	* 根据时间字符串返回Date
+	* 
+	* @param @param pTime 时间字符串
+	* @param @return
+	* @param @throws Exception    设定文件 
+	* @return Date    Date类型时间 
+	*/
+	public static Date getDate(String pTime) throws Exception {
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+		return format.parse(pTime);
+	}
+	
 }

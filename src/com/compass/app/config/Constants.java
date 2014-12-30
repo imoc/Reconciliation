@@ -114,10 +114,7 @@ public class Constants {
 	 * 
 	 */
 	public static final class Action {
-		//
-		public static final String ACTION_PULL_MSG = "com.wode.app.ation.pullMsg";
-		public static final String ACTION_PUSH_MSG = "com.wode.app.ation.pushMsg";
-		public static final String ACTION_PUSH_BLIND = "com.wode.app.ation.pushBlind";
+		public static final String TO_INDEX = "com.compass.reconciliation.backtoindex";
 	}
 	/**
 	 * tuling123

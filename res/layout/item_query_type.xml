@@ -18,13 +18,10 @@
 
     <TextView
         android:id="@+id/typeTv"
+        style="@style/inf_lable_Font"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
-        android:layout_marginLeft="6dp"
         android:layout_toRightOf="@id/iconIv"
-        android:singleLine="true"
-        android:text="关 于"
-        android:textColor="@color/black" />
+        android:text="关 于" />
 
 </RelativeLayout>

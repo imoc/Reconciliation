@@ -2,6 +2,7 @@ package com.compass.activity;
 
 import android.annotation.SuppressLint;
 import android.app.Dialog;
+import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -26,7 +27,7 @@ import com.compass.common.util.L;
 import com.compass.common.util.SharePreferenceUtil;
 import com.compass.common.util.T;
 import com.compass.reconciliation.R;
-import com.compass.view.BaseActivity;
+import com.compass.view.ui.base.BaseActivity;
 import com.google.gson.Gson;
 
 /**
@@ -42,6 +43,8 @@ public class LoginActivity extends BaseActivity implements OnClickListener {
 	public static final String LOGIN_ACTION = "com.way.action.LOGIN";
 	private static final int LOGIN_OUT_TIME = 0;
 	private Gson mGson;
+	private Context mContext;
+
 	private View mNetErrorView;
 	private Button mLoginBtn;
 	private TextView mRegistTv;
@@ -71,11 +74,10 @@ public class LoginActivity extends BaseActivity implements OnClickListener {
 		}
 
 	};
-
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		PushApplication.getInstance().addActivity(this);
 		setContentView(R.layout.activity_login);
 		initData();
 		initView();
@@ -101,6 +103,7 @@ public class LoginActivity extends BaseActivity implements OnClickListener {
 	}
 
 	private void initData() {
+		mContext = this;
 		mApplication = PushApplication.getInstance();
 		mSpUtil = mApplication.getSpUtil();
 		mGson = mApplication.getGson();
@@ -168,6 +171,9 @@ public class LoginActivity extends BaseActivity implements OnClickListener {
 		switch (v.getId()) {
 		// 登录验证
 		case R.id.login_btn:
+			// 跳转个人主页
+//			IntentUtil.start_activity(LoginActivity.this,
+//					TabHostActivity.class);
 			// 一定要去空格，不能出现 /login?account=mAccount空格&pwd=mPassword
 			String mAlias = mAliasEt.getText().toString().trim();
 			String mAccount = mAccountEt.getText().toString().trim();
@@ -293,16 +299,16 @@ public class LoginActivity extends BaseActivity implements OnClickListener {
 	 */
 	private void checkUsername(String alias, String name, String pwd) {
 		if (TextUtils.isEmpty(alias)) {
-			showShortToast(getResources().getString(R.string.user_alias));
+			T.showShort(mContext, R.string.user_alias);
 			return;
 		} else if (TextUtils.isEmpty(name)) {
-			showShortToast(getResources().getString(R.string.user_username));
+			T.showShort(mContext, R.string.user_username);
 			return;
 		} else if (TextUtils.isEmpty(pwd)) {
-			showShortToast(getResources().getString(R.string.user_pwd));
+			T.showShort(mContext, R.string.user_pwd_empty);
 			return;
 		} else if (!NetWorkHelper.checkNetState(this)) {
-			showLongToast(getResources().getString(R.string.httpisNull));
+			T.showShort(mContext, R.string.httpisNull);
 			return;
 		} else {
 			showLoginDialog();

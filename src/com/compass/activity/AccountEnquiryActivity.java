@@ -7,7 +7,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.DatePickerDialog.OnDateSetListener;
 import android.content.Context;
@@ -31,6 +30,7 @@ import android.widget.TextView;
 
 import com.compass.api.Urls;
 import com.compass.app.PushApplication;
+import com.compass.app.config.Constants;
 import com.compass.bean.QueryBean;
 import com.compass.bean.Responses_GetAccounts;
 import com.compass.common.https.HttpUtils;
@@ -40,6 +40,7 @@ import com.compass.common.util.SharePreferenceUtil;
 import com.compass.common.util.TimeUtil;
 import com.compass.reconciliation.R;
 import com.compass.test.UIHelper;
+import com.compass.view.ui.base.BaseActivity;
 import com.google.gson.Gson;
 
 /**
@@ -50,7 +51,7 @@ import com.google.gson.Gson;
  * @date 2014年11月13日 上午11:53:17
  * 
  */
-public class AccountEnquiryActivity extends Activity implements OnClickListener {
+public class AccountEnquiryActivity extends BaseActivity implements OnClickListener {
 	private final String TAG = AccountEnquiryActivity.class.getSimpleName();
 	//
 	private Context mContext;
@@ -100,7 +101,7 @@ public class AccountEnquiryActivity extends Activity implements OnClickListener 
 
 		// title
 		TextView mTitle = (TextView) findViewById(R.id.title_text);
-		mTitle.setText("对账查询");
+		mTitle.setText("对账管理");
 		ImageView back = (ImageView) findViewById(R.id.left_title_iv);
 		back.setOnClickListener(this);
 		//
@@ -266,7 +267,7 @@ public class AccountEnquiryActivity extends Activity implements OnClickListener 
 				mQueryTypeLayout.setVisibility(View.VISIBLE);
 
 			} else {
-				finish();
+				sendBroadcast(new Intent(Constants.Action.TO_INDEX));
 			}
 			break;
 		case R.id.fastQuery_bt:
@@ -301,7 +302,7 @@ public class AccountEnquiryActivity extends Activity implements OnClickListener 
 			startActivity(toQuetyIntent);
 			break;
 		case R.id.startDate_v:
-			showDatePicker(new OnDateSetListener() {
+			showDatePicker(mStartDateTv.getText().toString() ,new OnDateSetListener() {
 
 				@SuppressWarnings("deprecation")
 				@Override
@@ -316,7 +317,7 @@ public class AccountEnquiryActivity extends Activity implements OnClickListener 
 			});
 			break;
 		case R.id.endDate_v:
-			showDatePicker(new OnDateSetListener() {
+			showDatePicker(mEndDateTv.getText().toString() ,new OnDateSetListener() {
 
 				@Override
 				public void onDateSet(DatePicker view, int year,
@@ -350,6 +351,15 @@ public class AccountEnquiryActivity extends Activity implements OnClickListener 
 		if (mFastSectionsSpinner.getVisibility() == View.VISIBLE) {
 			mFastSectionsSpinner.setVisibility(View.GONE);
 		}
+		
+		mStartDateTv.setText(TimeUtil.getYMDTime(System
+				.currentTimeMillis()));
+		mEndDateTv.setText(TimeUtil.getYMDTime(System
+				.currentTimeMillis()));
+		queryBeen.setStratDate(TimeUtil.getYMDTime(System
+				.currentTimeMillis()));
+		queryBeen.setEndDate(TimeUtil.getYMDTime(System
+				.currentTimeMillis()));
 	}
 
 	/**
@@ -364,6 +374,12 @@ public class AccountEnquiryActivity extends Activity implements OnClickListener 
 		if (mSectionPickView.getVisibility() == View.VISIBLE) {
 			mSectionPickView.setVisibility(View.GONE);
 		}
+		
+		queryBeen.setStratDate(TimeUtil.getYMDTime((System
+				.currentTimeMillis() - sectionslong[0])));
+		queryBeen.setEndDate(TimeUtil.getYMDTime(System
+				.currentTimeMillis()));
+		mFastSectionsSpinner.setSelection(0, true);
 	}
 
 	/**
@@ -404,7 +420,7 @@ public class AccountEnquiryActivity extends Activity implements OnClickListener 
 				mQueryTypeLayout.setVisibility(View.VISIBLE);
 
 			} else {
-				finish();
+				sendBroadcast(new Intent(Constants.Action.TO_INDEX));
 			}
 
 			return true;// 事件不再传递
@@ -413,8 +429,13 @@ public class AccountEnquiryActivity extends Activity implements OnClickListener 
 		return super.onKeyDown(keyCode, event);
 	}
 
-	private void showDatePicker(OnDateSetListener dateListener) {
+	private void showDatePicker(String pTime ,OnDateSetListener dateListener) {
 		Calendar calendar = Calendar.getInstance();
+		try {
+			calendar.setTime(TimeUtil.getDate(pTime));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		DatePickerDialog dialog = new DatePickerDialog(this, dateListener,
 				calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH),
 				calendar.get(Calendar.DAY_OF_MONTH));
@@ -435,7 +456,6 @@ public class AccountEnquiryActivity extends Activity implements OnClickListener 
 		mQueryTypeLayout.setVisibility(View.INVISIBLE);
 		mQueryConditionLayout.setVisibility(View.VISIBLE);
 		mTypeTv.setText(types[queryBeen.getQueryType()]);
-		queryBeen.setAccount(accounts[0]);
 		
 		if (queryBeen.getQueryType() == QueryBean.TYPE_DZD_HZ_SQ
 				|| queryBeen.getQueryType() == QueryBean.TYPE_WD_ZW_CX
@@ -443,8 +463,14 @@ public class AccountEnquiryActivity extends Activity implements OnClickListener 
 			mHistoryTypeChoseView.setVisibility(View.GONE);
 		} else {
 			mHistoryTypeChoseView.setVisibility(View.VISIBLE);
+			mHistoryTypeSpinner.setSelection(0, true);
+			queryBeen.setHistoryType(0);
 		}
+		
+		showFastQueryView();
+		
 	}
+
 
 	class GetAccountsAsyncTask extends AsyncTask<String, Void, Boolean> {
 

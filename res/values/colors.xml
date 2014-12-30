@@ -180,9 +180,9 @@
     <color name="list_selector">#dfdfdf</color>
     <color name="black_content">#6c6c6c</color>
     <color name="red_name">#ef5198</color>
-    
+
     <!-- bankClient -->
-      <color name="top_bg_color">#ff18b4ed</color>
+    <color name="top_bg_color">#ff18b4ed</color>
     <!--  -->
 
 </resources>

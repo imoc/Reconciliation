@@ -2,13 +2,13 @@
 
     <!--
         Base application theme, dependent on API level. This theme is replaced
-        by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
+        by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
     -->
     <style name="AppBaseTheme" parent="android:Theme.Light">
         <!--
             Theme customizations available in newer API levels can go in
             res/values-vXX/styles.xml, while customizations related to
-            backward-compatibility can go here.
+            backward-compatibility can go here.
         -->
     </style>
 
@@ -90,7 +90,7 @@
         <item name="android:focusable">true</item>
         <item name="android:scrollHorizontally">true</item>
     </style>
-        <!-- Heading Style -->
+    <!-- Heading Style -->
     <style name="AllTitleTopTheme">
         <item name="android:layout_width">fill_parent</item>
         <item name="android:layout_height">56dp</item>
@@ -158,8 +158,9 @@
         <item name="android:textColor">@color/font_color2</item>
         <item name="android:lineSpacingMultiplier">1.2</item>
     </style>
+
     <style name="learn_progress_tag">
-         <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textSize">16sp</item>
         <item name="android:textColor">@color/blue</item>
@@ -175,7 +176,7 @@
     <style name="B12_Font">
         <item name="android:textSize">16sp</item>
         <item name="android:textColor">@color/black_content</item>
-<!--         <item name="android:textColor">@color/black</item> -->
+        <!-- <item name="android:textColor">@color/black</item> -->
         <item name="android:lineSpacingMultiplier">1.2</item>
         <item name="android:layout_marginRight">18dp</item>
     </style>
@@ -568,6 +569,15 @@
         <item name="android:background">@drawable/btn_style_bule</item>
     </style>
 
+    <style name="frame_button">
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">fill_parent</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:shadowColor">@color/blue</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:background">@drawable/frame_button_bg</item>
+    </style>
+
     <style name="customCheckBox" parent="@android:style/Widget.CompoundButton.CheckBox">
         <item name="android:button">@drawable/checkbox_bg1</item>
     </style>
@@ -577,7 +587,8 @@
     </style>
 
     <style name="customEditText" parent="@android:style/Widget.EditText">
-       <!--  <item name="android:background">@drawable/edit_text</item> -->
+
+        <!-- <item name="android:background">@drawable/edit_text</item> -->
         <item name="android:background">@null</item>
     </style>
 
@@ -645,7 +656,7 @@
         <item name="android:windowContentOverlay">@null</item>
         <item name="android:windowTitleSize">46.0dip</item>
         <item name="android:windowTitleBackgroundStyle">@style/CustomWindowTitleBackground</item>
-        <!--EditVie不显示边框  -->
+        <!-- EditVie不显示边框 -->
         <item name="android:editTextStyle">@style/customEditText</item>
         <item name="android:listViewStyle">@style/customListView</item>
         <item name="android:checkboxStyle">@style/customCheckBox</item>
@@ -663,15 +674,17 @@
         <item name="android:checkboxStyle">@style/customCheckBox</item>
         <item name="android:radioButtonStyle">@style/customRadioButton</item>
         <item name="android:windowAnimationStyle">@style/actAnimation</item>
-    </style>
+    </style>
     -->
 
     <style name="Default.NoTitleBar" parent="@style/Default">
         <item name="android:windowNoTitle">true</item>
-        <!--2014年8月13日9:24:21 消除启动白屏黑屏  -->
-       <!-- <item name="android:windowIsTranslucent">true</item>
+        <!-- 2014年8月13日9:24:21 消除启动白屏黑屏 -->
+        <!--
+        <item name="android:windowIsTranslucent">true</item>
         <item name="android:windowActionBar">false</item>
-        <item name="android:windowBackground">@android:color/transparent</item> -->
+        <item name="android:windowBackground">@android:color/transparent</item>
+        -->
     </style>
 
     <style name="Default.NoTitleBar.Chat" parent="@style/Default.NoTitleBar">
@@ -871,21 +884,21 @@
         <item name="android:layout_marginTop">2dip</item>
         <item name="android:background">@color/line_gray</item>
     </style>
-    
-<!-- bankClinent start --> 
-<style name="help_title_style">
+
+    <!-- bankClinent start -->
+    <style name="help_title_style">
         <item name="android:textSize">16.0sp</item>
         <item name="android:textColor">@color/gray</item>
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
-    </style>  
-     <style name="help_text_style">
+    </style>
+
+    <style name="help_text_style">
         <item name="android:textSize">14.0sp</item>
         <item name="android:textColor">@color/gray</item>
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
     </style>
-<!-- bankClinent end -->    
-    
+    <!-- bankClinent end -->
 
 </resources>

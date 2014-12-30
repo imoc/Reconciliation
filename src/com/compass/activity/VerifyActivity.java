@@ -3,7 +3,6 @@ package com.compass.activity;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import android.app.Activity;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -26,6 +25,7 @@ import com.compass.common.util.T;
 import com.compass.reconciliation.R;
 import com.compass.test.TestDataUtil;
 import com.compass.test.UIHelper;
+import com.compass.view.ui.base.BaseActivity;
 import com.google.gson.Gson;
 
 /**
@@ -35,7 +35,7 @@ import com.google.gson.Gson;
  * @date 2014年11月13日 上午11:53:17
  * 
  */
-public class VerifyActivity extends Activity implements OnClickListener {
+public class VerifyActivity extends BaseActivity implements OnClickListener {
 	private final String TAG = VerifyActivity.class.getSimpleName();
 	public enum ParameterType {
 		GET, SUBMIT;

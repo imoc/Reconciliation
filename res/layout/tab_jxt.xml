@@ -51,7 +51,7 @@
             <TextView
                 android:id="@+id/share_tv"
                 style="@style/toolbar_textView"
-                android:text="手机银行" />
+                android:text="对账管理" />
 
             <ImageView
                 android:id="@+id/share_notice_tv"

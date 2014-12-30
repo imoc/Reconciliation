@@ -21,7 +21,6 @@ public class PushApplication extends Application {
 	private SharePreferenceUtil mSpUtil;
 	private NotificationManager mNotificationManager;
 
-	private List<Activity> activityList = new LinkedList<Activity>();
 
 	public synchronized static PushApplication getInstance() {
 		if (null == mApplication) {
@@ -48,27 +47,12 @@ public class PushApplication extends Application {
 		mNotificationManager = (NotificationManager) getSystemService(android.content.Context.NOTIFICATION_SERVICE);
 	}
 
-	// 添加Activity到容器中
-	public void addActivity(Activity activity) {
-		activityList.add(activity);
-	}
 
 	// 遍历所有Activity并finish，系统退出
 	public void exit() {
-		for (Activity activity : activityList) {
-			activity.finish();
-		}
-
-		System.exit(0);
-		android.os.Process.killProcess(android.os.Process.myPid());
+		
 	}
 
-	// 遍历所有Activity并finish
-	public void clearActivitys() {
-		for (Activity activity : activityList) {
-			activity.finish();
-		}
-	}
 
 	public synchronized Gson getGson() {
 		if (mGson == null) {
@@ -105,7 +89,6 @@ public class PushApplication extends Application {
 		getSpUtil().setIsFirstUse(isFirstUse);
 		getSpUtil().setAccount(account);
 		// ============
-		// getSpUtil().clearSp();// 清空配置文件
 	}
 
 	/**
@@ -113,8 +96,9 @@ public class PushApplication extends Application {
 	 */
 	public void logout() {
 
-		exit();// 关闭所有Activity
 		cleanDB();
+		// 退出
+		AppManager.getAppManager().AppExit(getApplicationContext());
 	}
 
 }

@@ -3,10 +3,10 @@ package com.compass.activity;
 import java.util.ArrayList;
 import java.util.List;
 
-import android.app.Activity;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -25,10 +25,13 @@ import com.compass.bean.BanklogInforItem;
 import com.compass.bean.BanklogInforResult;
 import com.compass.bean.QueryBean;
 import com.compass.common.https.HttpUtils;
+import com.compass.common.util.DoubleClickExitHelper;
 import com.compass.common.util.IntentUtil;
 import com.compass.common.util.L;
 import com.compass.common.util.SharePreferenceUtil;
+import com.compass.common.util.T;
 import com.compass.reconciliation.R;
+import com.compass.view.ui.base.BaseActivity;
 import com.google.gson.Gson;
 
 /**
@@ -39,7 +42,7 @@ import com.google.gson.Gson;
  * @date 2014年11月13日 上午11:53:17
  * 
  */
-public class IndexActivity extends Activity implements OnClickListener {
+public class IndexActivity extends BaseActivity implements OnClickListener {
 	private final String TAG = IndexActivity.class.getSimpleName();
 	// ininData
 	private Context mContext;
@@ -54,6 +57,7 @@ public class IndexActivity extends Activity implements OnClickListener {
 	private BacklogInforsAdapter adapter;
 	private List<BanklogInforItem> mBanklogInforList;
 	private BanklogInforResult backlogInforResult;
+	private DoubleClickExitHelper mDoubleClickExitHelper;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -121,11 +125,12 @@ public class IndexActivity extends Activity implements OnClickListener {
 	}
 
 	private void ininData() {
+		mContext = this;
+		mDoubleClickExitHelper = new DoubleClickExitHelper(this);
 
 		mApplication = PushApplication.getInstance();
 		mSpUtil = mApplication.getSpUtil();
 		mGson = mApplication.getGson();
-		mContext = this;
 		types = getResources().getStringArray(R.array.queryType);
 
 	}
@@ -134,7 +139,7 @@ public class IndexActivity extends Activity implements OnClickListener {
 	public void onClick(View v) {
 		switch (v.getId()) {
 		case R.id.left_title_iv:
-			finish();
+			mDoubleClickExitHelper.onKeyDown(KeyEvent.KEYCODE_BACK, null);
 			break;
 
 		default:
@@ -272,6 +277,24 @@ public class IndexActivity extends Activity implements OnClickListener {
 		list.add(new BanklogInforItem(QueryBean.TYPE_WDZ_DQ_YE_DZD,
 				backlogInfor.getDQSIZE()));
 		return list;
+	}
+	
+	/**
+	 * 监听返回--是否退出程序
+	 */
+	public boolean onKeyDown(int keyCode, KeyEvent event) {
+		boolean flag = true;
+		if (keyCode == KeyEvent.KEYCODE_BACK) {
+			// 是否退出应用
+			return mDoubleClickExitHelper.onKeyDown(keyCode, event);
+		} else if (keyCode == KeyEvent.KEYCODE_MENU) {
+			// 展示快捷栏&判断是否登录
+		} else if (keyCode == KeyEvent.KEYCODE_SEARCH) {
+			// 展示搜索页
+		} else {
+			flag = super.onKeyDown(keyCode, event);
+		}
+		return flag;
 	}
 
 }

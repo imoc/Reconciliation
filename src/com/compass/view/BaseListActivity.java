@@ -18,10 +18,11 @@ import android.widget.TextView;
 import com.baidu.mobstat.StatService;
 import com.compass.common.util.ImageUtil.ImageCallback;
 import com.compass.reconciliation.R;
+import com.compass.view.ui.base.BaseActivity;
 import com.compass.widget.xlistview.XListView;
 import com.compass.widget.xlistview.XListView.IXListViewListener;
 
-public abstract class BaseListActivity extends Activity implements
+public abstract class BaseListActivity extends BaseActivity implements
 		IXListViewListener {
 
 	protected XListView listview;

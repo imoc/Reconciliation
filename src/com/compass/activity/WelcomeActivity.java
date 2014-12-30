@@ -1,6 +1,5 @@
 package com.compass.activity;
 
-import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
 import android.content.pm.PackageInfo;
@@ -23,6 +22,7 @@ import com.compass.common.util.L;
 import com.compass.common.util.SharePreferenceUtil;
 import com.compass.common.util.T;
 import com.compass.reconciliation.R;
+import com.compass.view.ui.base.BaseActivity;
 import com.google.gson.Gson;
 
 /**
@@ -32,7 +32,7 @@ import com.google.gson.Gson;
  * @date 2014年5月20日 下午7:23:54
  * @author 李小伟
  */
-public class WelcomeActivity extends Activity {
+public class WelcomeActivity extends BaseActivity {
 
 	private String TAG = WelcomeActivity.class.getSimpleName();
 	// 版本升级
@@ -79,9 +79,7 @@ public class WelcomeActivity extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		PushApplication.getInstance().addActivity(this);
 		setContentView(R.layout.activity_welcome);
-		// TODO 加载sdcard 启动图片 loadImgFromSd();
 		L.d(TAG, "进入WelcomeActivity");
 		T.showShortDebug(getApplicationContext(), "进入WelcomeActivity");
 		mSpUtil = PushApplication.getInstance().getSpUtil();
